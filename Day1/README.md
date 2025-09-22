@@ -17,7 +17,12 @@
 <details>
   <summary>📌 Click here to view Day1 Mind map</summary>
 
-  ![Week 1 Mind Map](./assets/week1_mindmap.png)
+  ![Day 1 Mind Map](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Day1_mind_map.png?raw=true)
 
-  *(This mind map summarizes the Day 1–5 flow of RTL design and synthesis.)*
+  *(This mind map summarizes the concept and lab modules of Day 1 of RTL design and synthesis.)*
 </details>
+
+## Open source Simulator iverilog
+  RTL Desig is checked for aherence to the specification by simulating the design
+
+
