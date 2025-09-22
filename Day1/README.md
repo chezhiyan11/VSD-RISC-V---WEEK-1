@@ -73,7 +73,7 @@ iverilog good_mux.v tb_good_mux.v
 
 ### 3. Run Simulation & Waveform
 <pre>
-<code>
+<code>https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/gvim_editor.png?raw=true
 ./a.out
 gtkwave tb_good_mux.vcd
 </code>
@@ -92,6 +92,99 @@ gvim tb_good_mux.v -o good_mux.v
 </pre>
 
 ![gvim_editor](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/gvim_editor.png?raw=true)
+
+
+## Synthesizer 
+1) The Synthesizer is the tool used for converting the RTL to the netlist
+2) Yosys is the Synthesizer used to convert the RTL to netlist
+
+### Yosys
+Yosys is an open-source logic synthesis tool widely used in digital hardware design. It reads Verilog code and produces a gate-level netlist, which serves as the blueprint for hardware implementation.
+
+![Synthesizer](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Synthesizer.png?raw=true)
+
+### Key Capabilities of Yosys
+  1) Synthesis → Translates HDL (Verilog) into logic circuits.
+  2) Optimization → Reduces area or improves speed.
+  3) Technology Mapping → Maps logic onto standard cells from a library.
+  4) Extensibility → Allows integration of custom flows.
+
+## Verifying the Synthesis
+
+Verification in a Synthesis Flow
+After synthesis, verification ensures that the gate-level design is functionally equivalent to the original RTL. Typical verification steps include:
+  1) Equivalence Checking → Confirms RTL vs. synthesized netlist behavior.
+  2) Simulation → Runs testbenches on gate-level models.
+  3) Static Timing Analysis (STA) → Validates timing closure across all paths.
+
+![Verifying the Synthesis](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Verify%20the%20synthesis.png?raw=true)
+
+
+## Gate Library Variants
+A technology library (.lib) provides multiple versions of standard logic gates (AND, OR, NOT, etc.), each optimized for different design goals:
+  1) Performance → High-speed cells for timing-critical paths, slower ones for low-power regions.
+  2) Power → Energy-efficient cells to minimize consumption.
+  3) Area → Compact cells for space-constrained designs.
+  4) Drive Strength → Stronger gates to handle larger loads.
+  5) Signal Integrity → Special cells for noise and reliability.
+  6) During technology mapping, the synthesis tool selects the most suitable variant to balance speed, power, and area based on design constraints.
+
+## LAB
+Synthesizing the Design of good_mux [2:1 Multiplexer]
+
+### 1. Invoke Yosys
+<pre>
+<code>
+yosys
+</code>
+</pre>
+
+![Invloking yosys](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Invoke%20yosys.png?raw=true)
+
+### 2. Read the Library
+<pre>
+<code>
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+</code>
+</pre>
+
+### 3. Read the Verilog Code
+<pre>
+<code>
+read_verilog good_mux.v
+</code>
+</pre>
+
+![Read the verilog code](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/read%20and%20write.png?raw=true)
+
+
+### 4. Synthesize the Design 
+<pre>
+<code>
+synth -top good_mux
+</code>
+</pre>
+
+![synthesize the code](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/synthesize%20the%20design.png?raw=true)
+
+
+### 5. Generating Netlist
+<pre>
+<code>
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+</code>
+</pre>
+
+![Generating Netlist](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/netlist%20generation.png?raw=true)
+
+### 6. Logic Visualization
+<pre>
+<code>
+show
+</code>
+</pre>
+
+![Visualize design](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/logic%20visualization.png?raw=true)
 
 
 
