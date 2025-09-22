@@ -17,7 +17,7 @@
 <details>
   <summary>📌 Click here to view Day1 Mind map</summary>
 
-  ![Day 1 Mind Map](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Day1_mind_map.png?raw=true | width = 200)
+  ![Day 1 Mind Map](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Day1_mind_map.png?raw=true)
 
   *(This mind map summarizes the concept and lab modules of Day 1 of RTL design and synthesis.)*
 </details>
@@ -27,13 +27,13 @@
 
 ### Design
 Design is the actual Verilog code for set of Verilog codes which has the intended functionality to meet with the required specifications.
-![Design block](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Design.png?raw=true | width = 100)
+![Design block](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Design.png?raw=true)
 
 ### Testbench
 Testbench checks whether the Design obeys the required specifiaction of not by applying stimulus or test vector.
-![Testbench block](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Testbench.png?raw=true | width = 100)
+![Testbench block](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/Testbench.png?raw=true)
 
 ### iverilog based simulation flow
-![Simulator Flow](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/simulator_working.png?raw=true | width = 100)
+![Simulator Flow](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/simulator_working.png?raw=true)
 
 
