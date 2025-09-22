@@ -58,6 +58,9 @@ cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
 </code>
 </pre>
 
-![Clone_Lab_Reposiraty]()
+![Clone_Lab_Reposiraty](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/clone_reposiraty.png?raw=truegood_shift_reg.v)
+
+## Loading the Design From Verilog_files to iverilog
+
 
 
