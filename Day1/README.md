@@ -1,3 +1,11 @@
+<div align="center">
+
+![Synthesis](https://img.shields.io/badge/Yosys-Synthesis-green?style=for-the-badge&logo=opensourceinitiative)
+![Icarus](https://img.shields.io/badge/Icarus-Verilog-orange?style=for-the-badge)
+![GTKWave](https://img.shields.io/badge/GTKWave-Simulation-lightgrey?style=for-the-badge)
+
+</div>
+
 # Day 1 — RTL Design and Synthesis (Introduction)
 
 ## Objective
