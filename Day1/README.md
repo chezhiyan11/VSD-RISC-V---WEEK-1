@@ -187,6 +187,21 @@ show
 ![Visualize design](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/logic%20visualization.png?raw=true)
 
 
+## Summary
+Day 1 lecture gives the insight about Verilog RTL design and Synthesis. It introduced the open-source simulator iverilog and the waveform viewer gtkwave through several associated labs. The session also focused on Yosys and Logic synthesis, detailing how the RTL design is converted into a Netlist. Further labs utilized Yosys alongside Sky130 PDKs. Concepts related to combinational delay, cell speeds (fast versus slow cells), and the role of constraints in synthesis were also discussed to achieve optimal performance.
+
+
+## 📚 Reference
+  1) VSD – Sky130 Open Source Tapeout
+       VLSI System Design (VSD) https://www.vlsisystemdesign.com/vsd-sky130/
+  2) Yosys Open Synthesis Suite
+       YosysHQ Documentation: https://yosyshq.readthedocs.io/
+  3) Icarus Verilog
+       Icarus Verilog (iverilog) Official Site: http://iverilog.icarus.com/
+  4) GTKWave
+       GTKWave Official Page: http://gtkwave.sourceforge.net/
+
+
 
 
 
