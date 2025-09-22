@@ -47,7 +47,9 @@ Testbench checks whether the Design obeys the required specifiaction of not by a
 1. Iverilog simulates the design using a test bench, producing a Vcd file for GTKWave visualization.
 2. Yosys handles logic synthesis, converting RTL to a Netlist, which Iverilog also verifies.
 introduction
+
 ![Simulator Flow](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/simulator_working.png?raw=true)
+
 
 ## LAB
 ### 1. Git Cloning
@@ -60,7 +62,38 @@ cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
 
 ![Clone_Lab_Reposiraty](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/clone_reposiraty.png?raw=truegood_shift_reg.v)
 
-## Loading the Design From Verilog_files to iverilog
+### 2. Loading the Design From Verilog_files to iverilog
+<pre>
+<code>
+iverilog good_mux.v tb_good_mux.v
+</code>
+</pre>
+
+![Compile the Design and Testbench](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/loading_design%20and%20tb%20in%20iverilog.png?raw=true)
+
+### 3. Run Simulation & Waveform
+<pre>
+<code>
+./a.out
+gtkwave tb_good_mux.vcd
+</code>
+</pre>
+
+![Synthesis Run](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/gtkwave%20analysis.png?raw=true)
+
+![gtkwave interface](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/gtkwave%20interface.png?raw=true)
+
+
+### 4. Viewing Design and TB file in gvim
+<pre>
+<code>
+gvim tb_good_mux.v -o good_mux.v
+</code>
+</pre>
+
+![gvim_editor](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/gvim_editor.png?raw=true)
+
+
 
 
 
