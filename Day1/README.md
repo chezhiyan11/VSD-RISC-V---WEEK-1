@@ -46,7 +46,18 @@ Testbench checks whether the Design obeys the required specifiaction of not by a
 ### iverilog based simulation flow
 1. Iverilog simulates the design using a test bench, producing a Vcd file for GTKWave visualization.
 2. Yosys handles logic synthesis, converting RTL to a Netlist, which Iverilog also verifies.
-
+introduction
 ![Simulator Flow](https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day1/images/simulator_working.png?raw=true)
+
+## LAB
+### 1. Git Cloning
+<pre>
+<code>
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+cd sky130RTLDesignAndSynthesisWorkshop/verilog_files
+</code>
+</pre>
+
+![Clone_Lab_Reposiraty]()
 
 
