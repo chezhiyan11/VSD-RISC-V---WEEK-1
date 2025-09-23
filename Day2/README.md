@@ -421,7 +421,8 @@ Flip-flops (Flops) and latches are fundamental elements in **sequential logic** 
 
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/Glitch_filter.png?raw=true
+" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
@@ -471,7 +472,7 @@ endmodule
 ---
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/flop_asy_syn.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
