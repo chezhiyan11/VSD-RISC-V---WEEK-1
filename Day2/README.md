@@ -340,7 +340,7 @@ write_verilog -noattr multiple_modules-flat.v
 
 <p align="center">
   <!-- Add your flat synthesis netlist visualization here -->
-  <img src="path_to_flat_synthesis_image.png" alt="Flat Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/flat_netlist.png?raw=true" alt="Flat Synthesis Netlist" width="600"/>
 </p>
 
 - To see the visualization after Generating the Netlist
@@ -385,7 +385,7 @@ show
 ```
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/Sub_nodule1_netlist.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
