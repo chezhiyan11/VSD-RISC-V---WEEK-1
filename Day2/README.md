@@ -244,7 +244,7 @@ module top_module (
     or_gate u2 (.A(X3), .B(X4), .Y(Y_or));
 endmodule
 ```
-Hierarchical design like this allows modular verification and synthesis of large designs efficiently.
+ - Hierarchical design like this allows modular verification and synthesis of large designs efficiently.
 ---
 
 ### 🖼️ Hierarchical Block Representation
@@ -281,14 +281,19 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show multiple_modules
 ```
 
+---
+
 ### 🖼️ Multi Module Netlist
 <p align="center">
   <!-- Replace 'path_to_your_image.png' with your actual image path -->
   <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
 </p>
 
+• In visualization, the design shows distinct sub-modules (e.g., Sub-mod 1 and Sub-mod 2) connected
+
 ---
 
+**Writing Hierarichal Netlist***
 ```bash 
 # 7. Write Netlist
 write_verilog -noattr multiple_modules-hier.v
@@ -301,15 +306,88 @@ write_verilog -noattr multiple_modules-hier.v
   <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
 </p>
 
+
+• It is clearly visible that the Hierarchy are preserved. 
 ---
 
 
+### CMOS Visualization
+<p align="center">
+  <!-- Replace 'path_to_your_image.png' with your actual image path -->
+  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+</p>
 
-### Lecture Blocks
-- **15. Lab5 – Hier vs Flat Synthesis (Part 1)**  
-- **16. Lab5 – Hier vs Flat Synthesis (Part 2)**  
+• Stacked Pmos is always bad since the Pmos have *poor mobility*
 
 ---
+
+### 🏗️ C. Flat Synthesis
+
+In **flat synthesis**, the entire design is optimized and represented as a single, large netlist, losing the original modular structure.
+
+- The command `yosys > flatten` is used to flatten the hierarchy.
+- After flattening, the hierarchy of the sub-modules is no longer preserved; they are written as **one single netlist**.
+- When visualized after flattening, although sub-modules were synthesized, they are merged, meaning **only the top level of the design is visible**.
+
+**Writing Flat Netlist**
+```bash 
+# 7. Write Netlist
+write_verilog -noattr multiple_modules-flat.v
+
+# 6. gvim viewer
+!gvim multiple_modules-flat.v
+```
+
+<p align="center">
+  <!-- Add your flat synthesis netlist visualization here -->
+  <img src="path_to_flat_synthesis_image.png" alt="Flat Synthesis Netlist" width="600"/>
+</p>
+
+- To see the visualization after Generating the Netlist
+```bash 
+yosys> flatten
+yosys> show
+```
+<p align="center">
+  <!-- Add your flat synthesis netlist visualization here -->
+  <img src="path_to_flat_synthesis_image.png" alt="Flat Synthesis Netlist" width="600"/>
+</p>
+
+---
+
+### 🏗️ D. Submodule Level Synthesis
+
+In **submodule level synthesis**, only a single submodule of the design is synthesized at a time.  
+
+- Only **one submodule** is visible after synthesis, while the rest of the hierarchy is preserved.
+- **Module level synthesis** is preferred when there are **multiple instances of the same module** in a design.
+- This approach follows a **divide-and-conquer methodology**, allowing designers to handle **large and complex netlists efficiently**.
+- Each submodule can be synthesized, optimized, and verified individually before integrating into the top-level design.
+- The Netlist generation is not required since there is no practical usage of Hardware.
+
+🖥️ Yosys Commands
+
+```bash
+# 1. Start Yosys
+yosys
+
+# 2. Read Liberty timing file
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 3. Read Verilog design files
+read_verilog multiple_modules.v
+
+# 4. Synthesize the design
+synth -top submodule1
+
+# 5. Visualize the synthesized design
+show 
+```
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
 
 ## 🔁 3. Flip-Flop Coding Styles & Optimizations
 
