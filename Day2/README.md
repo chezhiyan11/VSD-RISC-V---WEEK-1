@@ -543,7 +543,7 @@ gtkwave tb_dff_asyn_set.vcd
 ```
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/asyn.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
@@ -602,7 +602,7 @@ gtkwave tb_dff_asyn_reset.vcd
 
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/syn.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
@@ -667,7 +667,7 @@ gtkwave tb_dff_asyn_syncres_reset.vcd
 
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/asyn+sync.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
