@@ -314,7 +314,7 @@ write_verilog -noattr multiple_modules-hier.v
 ### CMOS Visualization
 <p align="center">
   <!-- Replace 'path_to_your_image.png' with your actual image path -->
-  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/cmos.png?raw=true" alt="Hierarchical Schematic" width="600"/>
 </p>
 
 • Stacked Pmos is always bad since the Pmos have *poor mobility*
@@ -350,7 +350,7 @@ yosys> show
 ```
 <p align="center">
   <!-- Add your flat synthesis netlist visualization here -->
-  <img src="path_to_flat_synthesis_image.png" alt="Flat Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/flatten.png?raw=true" alt="Flat Synthesis Netlist" width="600"/>
 </p>
 
 ---
