@@ -32,7 +32,7 @@
 
 ---
 
-## 📚 Table of Contents
+## 📚 Index
 1. ⏱️ Introduction to Timing `.lib` Files  
 2. 🏗️ Hierarchical vs Flat Synthesis  
 3. 🔁 Flip-Flop Coding Styles & Optimizations  
