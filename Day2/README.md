@@ -388,21 +388,35 @@ show
   <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
+---
+
 
 ## 🔁 3. Flip-Flop Coding Styles & Optimizations
 
-Efficient **RTL flop coding** ensures:  
-- Correct synthesis mapping  
-- Avoiding simulation–synthesis mismatches  
-- Cleaner optimization by tools  
+#### A. Importance of Flops (DFFs)
+Flip-flops (Flops) and latches are fundamental elements in **sequential logic** designs:
 
-### Lecture Blocks
-- **17. Flop Coding Styles (Part 1)**  
-- **18. Flop Coding Styles (Part 2)**  
-- **19. Lab – Flop Synthesis & Simulation (Part 1)**  
-- **20. Lab – Flop Synthesis & Simulation (Part 2)**  
-- **21. Interesting Optimizations (Part 1)**  
-- **22. Interesting Optimizations (Part 2)**  
+- Their primary role is to **isolate combinatorial circuits**, ensuring proper timing and data flow.
+- Flops **prevent glitches** (unwanted transient signals) from propagating through combinational logic, maintaining signal integrity.
+- They store and synchronize data between different stages of a design, acting as **timing checkpoints**.
+
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
+---
+  
+
+#### B. Flop Control Pins
+Flops include control pins to manage their behavior:
+
+- **Reset (Rst):** Forces the output to a known state (0 or 1) when activated.
+- **Set (Set):** Forces the output to the opposite known state (1 or 0) when activated.
+- Both Reset and Set pins can be **synchronous** (triggered with the clock) or **asynchronous** (independent of the clock).
+- Proper use of control pins ensures **predictable operation** and reliable sequential logic behavior.
+
+
 
 ---
 
