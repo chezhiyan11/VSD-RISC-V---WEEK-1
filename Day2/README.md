@@ -293,7 +293,7 @@ show multiple_modules
 
 ---
 
-**Writing Hierarichal Netlist***
+**Writing Hierarchical Netlist***
 ```bash 
 # 7. Write Netlist
 write_verilog -noattr multiple_modules-hier.v
@@ -303,7 +303,7 @@ write_verilog -noattr multiple_modules-hier.v
 ```
 <p align="center">
   <!-- Replace 'path_to_your_image.png' with your actual image path -->
-  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/hierarchical_netlsit.png?raw=true" alt="Hierarchical Schematic" width="600"/>
 </p>
 
 
