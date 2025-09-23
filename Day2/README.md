@@ -105,12 +105,29 @@ To understand the functionality of the cell, we can open and see equivalent veri
 ```
 ---
 
-#### 🖼️ Functional Representation 
+#### 🖼️ Functional Representation -  Verilog Code
+```bash
+// a21110: 2-input AND into first input of 4-input OR.
+module a21110 (
+    X = ((A1 & A2) | B1 | C1 | D1)
+);
 
-<p align="center">
-  <!-- Add your cell schematic/function image here -->
-  <img src="path_to_your_image.png" alt="Cell Functional Representation" width="500"/>
-</p>
+// Verilog simulation functional model.
+*/
+
+`timescale 1ns / 1ps
+default_nettype none
+
+`celldefine
+module sky130_fd_sc_hd__a21110 (
+    X,
+    A1,
+    A2,
+    B1,
+    C1,
+    D1
+);
+```
 
 ---
 
@@ -136,17 +153,157 @@ Standard cells are available in multiple "flavors" to balance **area, power, del
 ---
 
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Concepts-Synthesis,_Hierarchy/Flat-green" />
+</p>
 
----
 
 ## 🏗️ 2. Hierarchical vs Flat Synthesis
 
-- **Hierarchical Synthesis**  
-  - Preserves module boundaries  
-  - Easier debugging and modularity  
-- **Flat Synthesis**  
-  - Flattens design for global optimization  
-  - Better PPA (Power, Performance, Area) trade-offs but harder to analyze  
+Synthesis transforms the **Register Transfer Level (RTL) Verilog description** into a **gate-level netlist** using the standard cell library.  
+The resulting netlist represents the design in terms of actual logic gates available in the chosen technology.
+
+---
+
+### 📌 A. Synthesis Steps (Yosys Example)
+
+The synthesis process typically follows these steps:
+
+1. Start Yosys  
+2. Read the Liberty timing files  
+3. Read the Verilog design files (can include multiple modules)  
+4. Synthesize the design  
+5. Generate the netlist  
+6. Visualize the synthesized design  
+
+---
+
+#### 🖥️ Example Commands
+
+```yosys
+# Start Yosys
+yosys
+
+# Read Liberty timing file
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# Read top-level and submodule Verilog files
+read_verilog top_module.v and_gate.v or_gate.v
+
+# Synthesize the top-level module
+synth -top top_module
+
+# Generate gate-level netlist
+write_verilog top_module_netlist.v
+
+# Visualize the hierarchical design
+show top_module
+```
+
+
+---
+
+## 🏗️ B. Hierarchical Synthesis
+
+Hierarchical synthesis allows complex designs to be broken into **smaller, manageable modules**, which are then instantiated in a **top-level module**. This approach improves **readability, reusability**, and simplifies **debugging**.
+
+### 🔹 Multiple Modules Example
+
+Consider a design with two simple modules:
+
+**Module 1:** AND Gate
+```verilog
+module and_gate (
+    input A, B,
+    output Y
+);
+    assign Y = A & B;
+endmodule
+```
+
+**Module 2:** OR Gate
+```verilog
+module or_gate (
+    input A, B,
+    output Y
+);
+    assign Y = A | B;
+endmodule
+```
+
+**Top-Level Module: Instantiates both AND and OR gates**
+```verilog
+module top_module (
+    input X1, X2, X3, X4,
+    output Y_and, Y_or
+);
+    // Instantiate AND gate
+    and_gate u1 (.A(X1), .B(X2), .Y(Y_and));
+
+    // Instantiate OR gate
+    or_gate u2 (.A(X3), .B(X4), .Y(Y_or));
+endmodule
+```
+Hierarchical design like this allows modular verification and synthesis of large designs efficiently.
+---
+
+### 🖼️ Hierarchical Block Representation
+<p align="center">
+  <!-- Replace 'path_to_your_image.png' with your actual image path -->
+  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+</p>
+
+---
+
+### 🔹 Synthesis of Hierarchical Design
+
+Using Yosys, the hierarchical top-level module is synthesized into a gate-level netlist. The tool automatically resolves the hierarchy and generates the corresponding netlist for all instantiated sub-modules.
+
+🖥️ Yosys Commands
+
+```bash
+# 1. Start Yosys
+yosys
+
+# 2. Read Liberty timing file
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 3. Read Verilog design files
+read_verilog multiple_modules.v
+
+# 4. Synthesize the design
+synth -top multiple_modules
+
+# 5. Generate gate-level netlist
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 6. Visualize the synthesized design
+show multiple_modules
+```
+
+### 🖼️ Multi Module Netlist
+<p align="center">
+  <!-- Replace 'path_to_your_image.png' with your actual image path -->
+  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+</p>
+
+---
+
+```bash 
+# 7. Write Netlist
+write_verilog -noattr multiple_modules-hier.v
+
+# 6. gvim viewer
+!gvim multiple_modules-hier.v
+```
+<p align="center">
+  <!-- Replace 'path_to_your_image.png' with your actual image path -->
+  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+</p>
+
+---
+
+
 
 ### Lecture Blocks
 - **15. Lab5 – Hier vs Flat Synthesis (Part 1)**  
