@@ -286,7 +286,7 @@ show multiple_modules
 ### 🖼️ Multi Module Netlist
 <p align="center">
   <!-- Replace 'path_to_your_image.png' with your actual image path -->
-  <img src="path_to_your_image.png" alt="Hierarchical Schematic" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/Multiple_modules_netist.png?raw=true" alt="Hierarchical Schematic" width="600"/>
 </p>
 
 • In visualization, the design shows distinct sub-modules (e.g., Sub-mod 1 and Sub-mod 2) connected
