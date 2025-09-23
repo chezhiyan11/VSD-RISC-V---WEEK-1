@@ -99,6 +99,42 @@ cell ("sky130_fd_sc_hd__a2111o_1") {
   }
 }
 ```
+To understand the functionality of the cell, we can open and see equivalent verilog model in the "gvim" itself.
+```bash
+:sp ../my_lib/verilog_model/sky130_fd_sc_hd__a2111o.behavioral.v
+```
+---
+
+#### 🖼️ Functional Representation 
+
+<p align="center">
+  <!-- Add your cell schematic/function image here -->
+  <img src="path_to_your_image.png" alt="Cell Functional Representation" width="500"/>
+</p>
+
+---
+
+#### ✨ Boolean Function
+
+**X = ((A1 & A2) | B1 | C1 | D1)**  
+
+Here, four different signals are combined. Based on low/high conditions, **2⁵ = 32 input combinations** exist.  
+For each combination, the `.lib` defines parameters such as **delay, power, and transition**.
+
+---
+
+#### 📊 Example: Different Flavors of AND Gate Cells
+
+Standard cells are available in multiple "flavors" to balance **area, power, delay, and performance**:
+
+| Cell Flavor | Area (µm²)     | Speed      | Power Consumption | Delay Characteristics |
+|-------------|----------------|------------|-------------------|------------------------|
+| **AND2_0**  | 6.25 × 10⁸     | Very Slow  | Very Low          | High Delay             |
+| **AND2_2**  | 7.50 × 10⁸     | Medium     | Moderate          | Medium Delay           |
+| **AND2_4**  | 8.75 × 10⁸     | Very Fast  | High              | Very Low Delay         |
+
+---
+
 
 
 ---
