@@ -18,30 +18,88 @@
 
 ---
 
+## 🛠️ Tools Used
+
+| Tool      | Description                           | Purpose |
+|-----------|---------------------------------------|---------|
+| **Icarus Verilog (iverilog)** | Open-source Verilog simulator | Compiles & runs Verilog RTL + Testbench, generates `.vcd` waveforms |
+| **GTKWave** | Waveform viewer | Visualizes `.vcd` files generated from simulations |
+| **Yosys** | Open-source synthesis tool | Converts RTL to gate-level netlist using `.lib` standard cells |
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Flow-RTL→Sim→Waveforms→Synthesis-yellow" />
+</p>
+
+---
+
 ## 📚 Table of Contents
 1. ⏱️ Introduction to Timing `.lib` Files  
 2. 🏗️ Hierarchical vs Flat Synthesis  
 3. 🔁 Flip-Flop Coding Styles & Optimizations  
 4. 🧪 Lab Activities & Experiments  
-5. ✅ Summary  
+5. 🛠️ Tools Used (Table)  
+6. ✅ Summary  
 
 ---
 
-## ⏱️ 1. Timing `.lib` Files
+## ⏱️ 1. Introduction to Timing Libraries (.libs)
 
-Timing libraries (`.lib`) describe **standard cell characteristics** including:  
-- Propagation delay  
-- Setup & hold times  
-- Power & area trade-offs  
+Timing libraries, often referred to as **.lib files**, are essential in digital design. They define the **electrical, timing, power, and functional behavior** of standard cells used during synthesis and verification.
 
-### Lecture Blocks
-- **12. Lab4 – Introduction to .lib (Part 1)**  
-- **13. Lab4 – Introduction to .lib (Part 2)**  
-- **14. Lab4 – Introduction to .lib (Part 3)**  
+---
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Concepts-Cell_Delays,_Setup/Hold-green" />
-</p>
+### 📌 A. Library Parameters and Operating Conditions
+The performance of a design depends on three key parameters:
+
+1. **Voltage (V):** Specifies the operating voltage of the circuit.  
+2. **Process (P):** Represents the fabrication process corner. Variations occur due to inherent manufacturing differences.  
+3. **Temperature (T):** Defines the operating temperature range.  
+
+These three together — **Voltage, Process, and Temperature (PVT)** — determine how silicon behaves under different conditions.
+
+---
+
+#### 🔍 Example Library File
+Highlighted example:  
+**`sky130_fd_sc_hd__tt_025C_1v80.lib`**  
+
+- `tt` → Typical process corner  
+- `025C` → Temperature = 25 °C  
+- `1v80` → Operating voltage = 1.80 V  
+
+---
+
+#### 📊 Example Operating Conditions
+
+| Parameter      | Value              |
+|----------------|--------------------|
+| Technology     | CMOS               |
+| Delay Model    | Table Lookup       |
+| Time Units     | 1 ns               |
+| Voltage        | 1.80 V             |
+| Temperature    | 25 °C              |
+
+---
+
+### 📌 B. Cell Characterization and Flavors
+The `.lib` file contains information about different **standard cells**.  
+Each cell has:  
+- **Cell Functionality** – Logic behavior (also available in its Verilog model)  
+- **Timing Characteristics** – Delay, setup, hold, and transition information  
+- **Power Characteristics** – Leakage and dynamic power  
+
+---
+
+#### 📂 Example `.lib` Snippet
+```liberty
+cell ("sky130_fd_sc_hd__a2111o_1") {
+  leakage_power() {
+    value : 0.001794500;
+    when : "!A1 & !A2 & !B1 & !C1 & D1";
+  }
+}
+```
+
 
 ---
 
@@ -57,10 +115,6 @@ Timing libraries (`.lib`) describe **standard cell characteristics** including:
 ### Lecture Blocks
 - **15. Lab5 – Hier vs Flat Synthesis (Part 1)**  
 - **16. Lab5 – Hier vs Flat Synthesis (Part 2)**  
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Tradeoff-Optimization_vs_Modularity-orange" />
-</p>
 
 ---
 
@@ -79,10 +133,6 @@ Efficient **RTL flop coding** ensures:
 - **21. Interesting Optimizations (Part 1)**  
 - **22. Interesting Optimizations (Part 2)**  
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Focus-Reset_Handling,_Sensitivity_List-blue" />
-</p>
-
 ---
 
 ## 🧪 4. Lab Activities & Experiments
@@ -91,10 +141,6 @@ Efficient **RTL flop coding** ensures:
 - Running synthesis in both **hierarchical & flat modes**  
 - Experimenting with **different DFF coding styles**  
 - Observing optimizations during synthesis  
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Practice-Hands_On_Labs-red" />
-</p>
 
 ---
 
@@ -110,4 +156,3 @@ Efficient **RTL flop coding** ensures:
 <div align="center">
   <h2>🎉 End of Day 2 ✨</h2>
 </div>
-
