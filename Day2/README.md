@@ -461,14 +461,97 @@ endmodule
 
 ---
 
-## 🧪 4. Lab Activities & Experiments
+## 🔹 DFF Control Types
 
-- Analyzing `.lib` timing data with Yosys  
-- Running synthesis in both **hierarchical & flat modes**  
-- Experimenting with **different DFF coding styles**  
-- Observing optimizations during synthesis  
+| Control Type   | Description |
+| -------------- | ----------- |
+| **Asynchronous** | The control (Reset/Set) acts **irrespective of the clock**. The output changes immediately when the control signal is active. |
+| **Synchronous**  | The control (Reset/Set) acts **in proportion to the clock**. The output changes **only on the active clock edge** when the control signal is active. |
 
 ---
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
+---
+
+
+
+## 🧪 4. Lab 
+
+## 🔹 Lab 4 – DFF Design Modules
+
+| Module Name                     | Functionality Description |
+| -------------------------------- | ------------------------- |
+| **dff_asyn_set.v**               | D Flip-Flop with **asynchronous set**. The output is immediately set when the Set input is high, irrespective of the clock. |
+| **dff_asyn_reset.v**             | D Flip-Flop with **asynchronous reset**. The output is immediately cleared when the Reset input is high, irrespective of the clock. |
+| **dff_asyn_syncres_reset.v**     | D Flip-Flop with **asynchronous set** and **synchronous reset**. The output is set asynchronously but reset only on the active clock edge. |
+ 
+---
+
+## 🔹 A. Analysis of dff_asyn_set.v
+
+### Module Overview
+The `dff_asyn_set.v` module implements a **D Flip-Flop with asynchronous set** functionality.
+
+- **Asynchronous Set:** The output Q is immediately set to 1 when the `Set` input is high, regardless of the clock signal.
+- **Clock Behavior:** When `Set` is low, the flip-flop operates normally with the rising edge of the clock controlling the D → Q transfer.
+- **Outputs:**  
+  - `Q` → Main output  
+  - `Q_bar` → Complement of Q
+
+### Behavioral Description
+- When `Set = 1` → `Q = 1` immediately  
+- When `Set = 0` → `Q` follows the D input at the rising edge of the clock
+
+### Example Verilog Code Snippet
+
+```verilog
+module dff_asyn_set (
+    input D,
+    input Clk,
+    input Set,
+    output reg Q,
+    output Q_bar
+);
+assign Q_bar = ~Q;
+
+always @(posedge Clk or posedge Set) begin
+    if (Set)
+        Q <= 1'b1; // Asynchronous set
+    else
+        Q <= D;    // Normal D Flip-Flop operation
+end
+endmodule
+```
+
+## 🖥️ Waveform Analysis Using GTKWave
+
+After simulating the `dff_asyn_set.v` module, we can visualize the behavior of the flip-flop using **GTKWave**.  
+This helps in verifying the asynchronous set functionality and the D → Q transfer on the rising edge of the clock.
+
+### Typical Waveform Analysis
+- Observe **Set = 1** → Q immediately goes high  
+- Observe **Set = 0** → Q follows D at the rising edge of Clk  
+- Q_bar always shows the complement of Q  
+
+### Example: Viewing the Waveform
+```bash
+# Run GTKWave on the generated VCD file
+gtkwave dff_asyn_set.vcd
+```
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
+---
+
+
+
+
+
 
 ## ✅ 5. Summary
 
