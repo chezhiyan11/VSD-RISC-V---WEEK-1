@@ -390,6 +390,25 @@ show
 
 ---
 
+<div align="center">
+
+  <table align="center">
+    <tr>
+      <td>
+        <img src="https://img.shields.io/badge/DFF-Flops-red" alt="DFF/Flops" />
+      </td>
+      <td>
+        <img src="https://img.shields.io/badge/Sequential-Logic-yellow" alt="Sequential Logic" />
+      </td>
+      <td>
+        <img src="https://img.shields.io/badge/Combinational-Logic-blue" alt="Combinational Logic" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
 
 ## 🔁 3. Flip-Flop Coding Styles & Optimizations
 
@@ -416,7 +435,29 @@ Flops include control pins to manage their behavior:
 - Both Reset and Set pins can be **synchronous** (triggered with the clock) or **asynchronous** (independent of the clock).
 - Proper use of control pins ensures **predictable operation** and reliable sequential logic behavior.
 
+#### DFF-Verilog Code
+### Example: Positive-Edge Triggered D Flip-Flop with Asynchronous Reset
 
+```verilog
+module dff (
+    input wire clk,    
+    input wire rst,      
+    input wire d,       
+    output reg q        
+);
+
+always @(posedge clk, posedge asyn_reset) begin
+    if (asyn_reset)
+        q <= 1'b0;      
+    else
+        q <= d;       
+end
+
+endmodule
+```
+
+ - When there is a change in clock or change in reset, the always block executes.
+ - From the Code it is Clear that upon any input signal the output is going low and hence it is a **Asynchronous Reset**.
 
 ---
 
