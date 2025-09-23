@@ -486,7 +486,7 @@ endmodule
 | -------------------------------- | ------------------------- |
 | **dff_asyn_set.v**               | D Flip-Flop with **asynchronous set**. The output is immediately set when the Set input is high, irrespective of the clock. |
 | **dff_asyn_reset.v**             | D Flip-Flop with **asynchronous reset**. The output is immediately cleared when the Reset input is high, irrespective of the clock. |
-| **dff_asyn_syncres_reset.v**     | D Flip-Flop with **asynchronous set** and **synchronous reset**. The output is set asynchronously but reset only on the active clock edge. |
+| **dff_asyn_syncres.v**     | D Flip-Flop with **asynchronous set** and **synchronous reset**. The output is set asynchronously but reset only on the active clock edge. |
  
 ---
 
@@ -539,7 +539,7 @@ This helps in verifying the asynchronous set functionality and the D → Q trans
 ### Example: Viewing the Waveform
 ```bash
 # Run GTKWave on the generated VCD file
-gtkwave dff_asyn_set.vcd
+gtkwave tb_dff_asyn_set.vcd
 ```
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
@@ -548,20 +548,190 @@ gtkwave dff_asyn_set.vcd
 
 ---
 
+## 🔹 B. Analysis of dff_asyn_reset.v
 
+### Module Overview
+The `dff_asyn_reset.v` module implements a **D Flip-Flop with asynchronous reset** functionality.
 
+- **Asynchronous Reset:** The output Q is immediately reset to 0 when the `Reset` input is high, regardless of the clock signal.
+- **Clock Behavior:** When `Reset` is low, the flip-flop operates normally with the rising edge of the clock controlling the D → Q transfer.
+- **Outputs:**  
+  - `Q` → Main output  
+  - `Q_bar` → Complement of Q
 
+### Behavioral Description
+- When `Reset = 1` → `Q = 0` immediately  
+- When `Reset = 0` → `Q` follows the D input at the rising edge of the clock
 
+### Example Verilog Code Snippet
 
-## ✅ 5. Summary
+```verilog
+module dff_asyn_reset (
+    input D,
+    input Clk,
+    input Reset,
+    output reg Q,
+    output Q_bar
+);
+assign Q_bar = ~Q;
 
-- Understood how `.lib` timing libraries bridge **RTL and technology cells**.  
-- Compared **hierarchical** vs **flat synthesis flows** and their trade-offs.  
-- Learned different **flop coding styles** and their synthesis impact.  
-- Explored **synthesis optimizations** through Yosys labs.  
+always @(posedge Clk or posedge Reset) begin
+    if (Reset)
+        Q <= 1'b0; // Asynchronous reset
+    else
+        Q <= D;    // Normal D Flip-Flop operation
+end
+endmodule
+```
+
+## 🖥️ Waveform Analysis Using GTKWave
+
+After simulating the `dff_asyn_reset.v` module, we can visualize the behavior of the flip-flop using **GTKWave**.  
+This helps in verifying the asynchronous reset functionality and the D → Q transfer on the rising edge of the clock.
+
+### Typical Waveform Analysis
+- Observe **Reset = 1** → Q immediately goes low  
+- Observe **Reset = 0** → Q follows D at the rising edge of Clk  
+- Q_bar always shows the complement of Q  
+
+### Example: Viewing the Waveform
+```bash
+# Run GTKWave on the generated VCD file
+gtkwave tb_dff_asyn_reset.vcd
+```
+
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
 
 ---
 
-<div align="center">
-  <h2>🎉 End of Day 2 ✨</h2>
-</div>
+## 🔹 C. Analysis of dff_asyn_syncres_reset.v
+
+### Module Overview
+The `dff_asyn_syncres_reset.v` module implements a **D Flip-Flop with asynchronous and synchronous reset** functionality.
+
+- **Asynchronous Reset:** The output Q is immediately reset to 0 when the `Async_Reset` input is high, regardless of the clock signal.
+- **Synchronous Reset:** The output Q is reset to 0 on the rising edge of the clock when the `Sync_Reset` input is high.
+- **Clock Behavior:** When both reset signals are low, the flip-flop operates normally with the rising edge of the clock controlling the D → Q transfer.
+- **Outputs:**  
+  - `Q` → Main output  
+  - `Q_bar` → Complement of Q
+
+### Behavioral Description
+- When `Async_Reset = 1` → `Q = 0` immediately  
+- When `Sync_Reset = 1` at rising edge of Clk → `Q = 0`  
+- When both resets = 0 → `Q` follows the D input at the rising edge of the clock  
+
+### Example Verilog Code Snippet
+
+```verilog
+module dff_asyn_syncres_reset (
+    input D,
+    input Clk,
+    input Async_Reset,
+    input Sync_Reset,
+    output reg Q,
+    output Q_bar
+);
+assign Q_bar = ~Q;
+
+always @(posedge Clk or posedge Async_Reset) begin
+    if (Async_Reset)
+        Q <= 1'b0;               // Asynchronous reset
+    else if (Sync_Reset)
+        Q <= 1'b0;               // Synchronous reset
+    else
+        Q <= D;                  // Normal D Flip-Flop operation
+end
+endmodule
+```
+
+## 🖥️ Waveform Analysis Using GTKWave
+
+After simulating the `dff_asyn_syncres_reset.v` module, we can visualize the behavior of the flip-flop using **GTKWave**.  
+This helps in verifying both the asynchronous and synchronous reset functionality along with the D → Q transfer on the rising edge of the clock.
+
+### Typical Waveform Analysis
+- Observe **Asynchronous Reset = 1** → Q immediately goes low  
+- Observe **Synchronous Reset = 1** at rising edge of Clk → Q is reset to 0  
+- Observe Reset = 0 → Q follows D at the rising edge of Clk  
+- Q_bar always shows the complement of Q  
+
+### Example: Viewing the Waveform
+```bash
+# Run GTKWave on the generated VCD file
+gtkwave tb_dff_asyn_syncres_reset.vcd
+```
+
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
+---
+
+## ⚙️ 5. Optimization in Synthesis
+
+### Optimization Concept and Example
+During synthesis, optimizations aim to reduce **area, power, and delay** while maintaining correct functionality.  
+The synthesis tool can detect redundant logic or simplify operations.
+
+**Example: Mux Optimization**  
+- Mux-2: A[2:0] → Mux[3:0] B  
+- Observation: Some operations may not require additional hardware, so the synthesizer optimizes automatically.
+
+<p align="center">
+  <!-- Add your submodule synthesis visualization here -->
+  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+</p>
+
+---
+
+
+## ✅ 6. Summary
+
+### I. Timing Libraries (.libs)
+- Standard cell behavior is defined using **.lib files** (e.g., `sky130_fd_sc_hd__tt_025C_1V80.lib`).
+- Key operating parameters: **Process (P), Voltage (V), Temperature (T)**.
+- Cells characterized for **power, area, delay**, with multiple flavors (slow/medium/fast) for design trade-offs.
+
+### II. Synthesis Methods
+**Hierarchical Synthesis:**  
+- Retains module structure; ideal for multiple instances of same module.  
+- Steps: `yosys` → `read_liberty` → `read_verilog` → `synth -top` → `abc -liberty` → `show` → `write_verilog`.
+
+**Flat Synthesis:**  
+- Collapses hierarchy; entire design is one netlist.  
+- Command: `Yosys > flatten` → output netlist contains only top-level view.
+
+**Submodule-Level Synthesis:**  
+- Only one submodule is synthesized at a time; useful in divide-and-conquer for large designs.
+
+### III. Sequential Logic – Flip-Flops
+- **D Flip-Flops (DFFs)** isolate combinational logic and prevent glitches.  
+- **Control Pins:** Reset, Set (synchronous or asynchronous).  
+  - **Asynchronous:** Acts immediately, ignores clock.  
+  - **Synchronous:** Acts on active clock edge.
+
+### IV. Optimization
+- Uses **ABC tool** for logic minimization and mapping to standard cells.  
+- Commands: `Yosys > abc -liberty ...`  
+- Example: Mux-2 optimization may remove unnecessary hardware for simple logic (`Y = 2'b01`).
+
+> ⚡ Key Takeaway: Timing libraries define silicon behavior; synthesis converts RTL → netlist (hierarchical/flat); flip-flops control sequential logic; optimization improves area, power, and performance.
+
+
+---
+
+## 📚 References
+
+1. Kunal Ghosh, **Sky130 RTL Design and Synthesis Workshop**, GitHub Repository: [https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop](https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop)  
+2. Yosys Open SYnthesis Suite, [http://www.clifford.at/yosys/](http://www.clifford.at/yosys/)  
+3. Icarus Verilog, [http://iverilog.icarus.com/](http://iverilog.icarus.com/)  
+4. GTKWave Waveform Viewer, [http://gtkwave.sourceforge.net/](http://gtkwave.sourceforge.net/)  
+5. SkyWater PDK (Sky130), [https://skywater-pdk.readthedocs.io/en/latest/](https://skywater-pdk.readthedocs.io/en/latest/)  
+6. J. Bhasker, **A Verilog HDL Primer**, Star Galaxy Publishing, 1999.  
+7. ASIC Design Tutorials: Timing, Synthesis, and Optimization Concepts – Course Notes, VSD SoC Tapeout Program.
+
