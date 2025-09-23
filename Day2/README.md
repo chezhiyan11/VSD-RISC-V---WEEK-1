@@ -684,7 +684,7 @@ The synthesis tool can detect redundant logic or simplify operations.
 
 <p align="center">
   <!-- Add your submodule synthesis visualization here -->
-  <img src="path_to_submodule_image.png" alt="Submodule Synthesis Netlist" width="600"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day2/Images/optimisation.png?raw=true" alt="Submodule Synthesis Netlist" width="600"/>
 </p>
 
 ---
