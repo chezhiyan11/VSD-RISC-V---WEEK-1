@@ -73,12 +73,26 @@ Combinational logic optimization is the process of **squeezing the logic** to ob
        Y = $\\overline{C}$
        \]
        → No additional gate needed, It can achievd by only one inverted logic.
+       - **Hardware Savings:**  
+       - Original: Complex gate structure (≈ 6 MOS transistors).  
+       - Simplified: Just an inverter (≈ 2 MOS transistors).  
 
   2. **Boolean Logic Optimization**
      - Algebraic simplification of Boolean expressions.  
      - Example methods:  
        - **K-Map Reduction** (Karnaugh Maps)  
        - **Quine McCluskey Method** (tabular approach for minimization)
+
+      Boolean optimization focuses on **algebraic simplification** for area savings.
+
+#### Boolean Logic Simplification Example
+Ternary operator logic:  
+
+```verilog
+assign y = a ? (b ? (c ? : (c ? a : 0)) : (!c)) : (!c);
+```
+
+
 
 ---
 
@@ -132,28 +146,5 @@ Sequential optimizations aim at **register-level improvements** for better perfo
      - Signal `A` cloned into two drivers separately driving `B` and `C`.
 
 ---
-
-### 🔢 II. Boolean Logic Optimizations
-Boolean optimization focuses on **algebraic simplification** for area savings.
-
-#### A. Constant Propagation Example
-Equation:  
-\[
-Y = ((AB) + C)'
-\]  
-If **A = 0** →  
-\[
-Y = ((0 \cdot B) + C)' = (0 + C)' = \overline{C}
-\]
-
-- **Hardware Savings:**  
-  - Original: Complex gate structure (≈ 6 MOS transistors).  
-  - Simplified: Just an inverter (≈ 2 MOS transistors).  
-
-#### B. Boolean Logic Simplification Example
-Ternary operator logic:  
-
-```verilog
-assign y = a ? (b ? (c ? : (c ? a : 0)) : (!c)) : (!c);
 
 
