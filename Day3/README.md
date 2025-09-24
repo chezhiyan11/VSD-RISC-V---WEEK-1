@@ -629,32 +629,33 @@ These **unused outputs** unnecessarily consume area and power if not optimized a
 ---
 
 ### 🔧 Example Case
-### ⚡ E. dff_const5– Constant Propagation
+### ⚡ A. const_opt – Constant Propagation
 In this example, logic with constant inputs is simplified by the synthesis tool.
 
 #### Example Verilog Code
 ```verilog
 
-module dff_const5(input clk, input reset, output reg q);
-reg q1;
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = count[0];
 
-always @(posedge clk, posedge reset)
+always @(posedge clk ,posedge reset)
 begin
 	if(reset)
-	begin
-		q <= 1'b0;
-		q1 <= 1'b0;
-	end
+		count <= 3'b000;
 	else
-	begin
-		q1 <= 1'b1;
-		q <= q1;
-	end
+		count <= count + 1;
 end
 
 endmodule
-
 ```
+
 ---
 
+#### Design Visualization
 
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const5_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
