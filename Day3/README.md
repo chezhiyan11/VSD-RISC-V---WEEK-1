@@ -321,5 +321,143 @@ endmodule
 
 ---
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Sequential-Logic_Optimization-darkgreen?style=for-the-badge" alt="Sequential Logic Optimization Badge"/>
+</p>
 
+---
+## 🔹 3) Sequential Logic Optimizations
+
+### 📘 Overview
+Sequential logic optimizations focus on improving the efficiency of **sequential circuits** (like flip-flops, registers, and state machines).  
+These optimizations are divided into **basic** and **advanced** categories.
+
+---
+
+### 🟢 A. Basic Sequential Optimization
+
+- **Sequential Constant Propagation**
+  - Example: A D flip-flop with inputs `RST`, `D`, and `Clk`
+  - If constant values are fed:
+    - `RST = 1` → `Q = 0`
+    - `D = 0` → `Q = 0`  
+  - Simplification Example:
+    ```
+    Ȧ · Ḋ = (A + D)' = Ȧ + 1 = 1 → Y = 1
+    ```
+    This reduces unnecessary hardware.
+
+- **Impact of SET Input**
+  - A D flip-flop with an asynchronous **SET** signal sets `Q=1` immediately, overriding clock control.
+  - This demonstrates how constant or dominant signals simplify sequential hardware.
+
+---
+
+### 🔵 B. Advanced Sequential Optimizations *(Not Covered in Lab)*
+
+1. **State Optimization (State opt)**  
+   - Removes **unused states** in FSMs, reducing area/power.  
+
+2. **Retiming**  
+   - Moves registers across combinational logic to balance delays.  
+   - Example:  
+     - Path delay = 5 ns → max freq = 200 MHz  
+     - After retiming = 3 ns → max freq = 333 MHz  
+
+3. **Sequential Logic Cloning (Cloning)**  
+   - Also called **Floorplan-aware synthesis**  
+   - Duplicate registers or drivers to handle **high fan-out** and routing congestion.  
+
+---
+
+### 🧩 Example: Sequential Constant Propagation 
+
+🖥️ Yosys Commands
+
+```bash
+# 1. Start Yosys
+yosys
+
+# 2. Read Liberty timing file
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 3. Read Verilog design files
+read_verilog opt_check.v
+
+# 4. Synthesize the design
+synth -top opt_check
+
+# 5. Library Mapping for Sequential Circuits
+dfflibmap -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 6. Generate gate-level netlist
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 7. Visualize the synthesized design
+show 
+```
+
+### ⚡ A. dff_const1 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+#### Code Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/gvim_dff_const1.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Similation Waveform Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/simulation_dff_const1.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const1_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ B. dff_const2– Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+
+
+#### Similation Waveform Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check4.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check4.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
 
