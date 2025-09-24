@@ -448,7 +448,7 @@ endmodule
 #### Similation Waveform Visualization
 
   <p align="center">
-    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check4.png?raw=true" alt="Description of Image" width="600"/>
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/simulation_dff_const2.png?raw=true" alt="Description of Image" width="600"/>
   </p>
 
 ---
@@ -456,7 +456,94 @@ endmodule
 #### Design Visualization
 
   <p align="center">
-    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check4.png?raw=true" alt="Description of Image" width="600"/>
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const2_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ C. dff_const3– Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+
+
+#### Similation Waveform Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/simulation_dff_const3.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const3_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ D. dff_const4– Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+
+
+#### Similation Waveform Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/Simulation_dff_const4.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const4_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ E. dff_const5– Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+
+
+#### Similation Waveform Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/simulation_dff_const5.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const5_netlist.png?raw=true" alt="Description of Image" width="600"/>
   </p>
 
 ---
