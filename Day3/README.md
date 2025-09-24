@@ -153,6 +153,13 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 
 ---
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Combinational-Optimization-blueviolet?style=for-the-badge" alt="Combinational Optimization Badge"/>
+</p>
+
+
+---
+
 ## 🔹 2) Combinational Logic Optimizations
 
 Combinational logic optimizations focus on **reducing redundant gates, propagating constants, and simplifying Boolean expressions** in the RTL.  
