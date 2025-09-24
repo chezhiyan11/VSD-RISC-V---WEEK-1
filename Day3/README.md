@@ -111,9 +111,15 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 
 2. **Retiming**  
    - Moving registers across combinational blocks to improve frequency/timing.  
-   - Example:  
+   - Example:
+  
+     <p align="center">
+       <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/Retimign.png?raw=true" alt="Description of Image" width="600"/>
+     </p>
+  
+     
      - Path delay = 5ns → Frequency = 200MHz  
-     - After retiming = 3ns → Frequency = 333MHz  
+     - After retiming = 4ns → Frequency = 250MHz  
 
 3. **Sequential Logic Cloning (Physical Aware)**  
    - Duplicating drivers to handle **high fan-out nets** or routing constraints.  
