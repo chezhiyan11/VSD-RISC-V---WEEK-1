@@ -89,7 +89,7 @@ Combinational logic optimization is the process of **squeezing the logic** to ob
 Ternary operator logic:  
 
 ```verilog
-assign y = a ? (b ? (c ? : (c ? a : 0)) : (!c)) : (!c);
+assign y = a ? (b ? c (c ? : (c ? a : 0)) : (!c);
 ```
 
 <p align="center">
