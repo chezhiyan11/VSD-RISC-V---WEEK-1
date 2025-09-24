@@ -88,14 +88,19 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 #### A. Basic Sequential Optimizations
 - **Sequential Constant Propagation**  
   - If inputs are constant, flip-flop behavior simplifies.  
-  - Example:  
+  - Example:
+ 
+    
+       <p align="center">
+         <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/sequential_constant_propagartion.png?raw=true" alt="Description of Image" width="600"/>
+       </p>
+ 
+
+  
     A D Flip-Flop with inputs `RST`, `D`, and `Clk`  
     - If **RST = 1 → Q = 0**  
     - If **D = 0 → Q always = 0**  
-    - Expression simplification:  
-      \[
-      \overline{A} \cdot \overline{D} = \overline{A+D} = \overline{A} + 1 = 1 \quad \Rightarrow \quad Y = 1
-      \]
+
 
 - **Set Behavior Example**  
   - With an asynchronous `Set` input, `Q` immediately goes high irrespective of `Clk`.
