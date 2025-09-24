@@ -92,6 +92,12 @@ Ternary operator logic:
 assign y = a ? (b ? (c ? : (c ? a : 0)) : (!c)) : (!c);
 ```
 
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/Boolean_logic.png?raw=true" alt="Description of Image" width="600"/>
+</p>
+
+
+
 
 
 ---
