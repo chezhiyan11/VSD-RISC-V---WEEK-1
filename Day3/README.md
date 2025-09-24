@@ -153,4 +153,166 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 
 ---
 
+## 🔹 2) Combinational Logic Optimizations
+
+Combinational logic optimizations focus on **reducing redundant gates, propagating constants, and simplifying Boolean expressions** in the RTL.  
+Below are hands-on experiments (`opt_check1` → `opt_check4` and `multiple_module_opt`) demonstrating Yosys optimizations.
+
+---
+
+🖥️ Yosys Commands
+
+```bash
+# 1. Start Yosys
+yosys
+
+# 2. Read Liberty timing file
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 3. Read Verilog design files
+read_verilog opt_check.v
+
+# 4. Synthesize the design
+synth -top opt_check
+
+# 5. Cleaning the Optimized Design
+opt_clean -purge
+
+# 6. Generate gate-level netlist
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 7. Visualize the synthesized design
+show 
+```
+
+### ⚡ A. opt_check1 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, output y);
+  assign y = a?b:0;
+endmodule
+```
+---
+#### Gvim Design Code Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ B. opt_check2 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, output y);
+  assign y = a&1:b; 
+endmodule
+
+```
+---
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check2_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+
+### ⚡ C. opt_check3 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(c?b:0):0;
+endmodule
+
+```
+---
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check3%5C.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ D. opt_check4 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module opt_check1 (input a, input b, input c, output y);
+  assign y = a?(b?(a&c):c):(!c);
+endmodule
+
+```
+---
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/opt_check4.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+
+### ⚡ E. multiple_module_opt – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+module sub_module1(input a , input b , output y);
+ assign y = a & b;
+endmodule
+
+
+module sub_module2(input a , input b , output y);
+ assign y = a^b;
+endmodule
+
+
+module multiple_module_opt(input a , input b , input c , input d , output y);
+wire n1,n2,n3;
+
+sub_module1 U1 (.a(a) , .b(1'b1) , .y(n1));
+sub_module2 U2 (.a(n1), .b(1'b0) , .y(n2));
+sub_module2 U3 (.a(b), .b(d) , .y(n3));
+
+assign y = c | (b & n1); 
+
+
+endmodule
+
+```
+---
+#### Design Visualization Multip Module Hierarchical
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/multiple_module_opt.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+#### Design Visualization Multip Module Flattened
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/multiple_module_opt(flatten).png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+
 
