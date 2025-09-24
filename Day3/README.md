@@ -117,7 +117,12 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 
 3. **Sequential Logic Cloning (Physical Aware)**  
    - Duplicating drivers to handle **high fan-out nets** or routing constraints.  
-   - Example:  
+   - Example:
+  
+     <p align="center">
+       <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/cloning.png?raw=true" alt="Description of Image" width="600"/>
+     </p>
+       
      - Signal `A` cloned into two drivers separately driving `B` and `C`.
 
 ---
