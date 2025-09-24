@@ -607,3 +607,54 @@ endmodule
 
 ---
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Sequential-Optimization_for_Unused_Outputs-crimson?style=for-the-badge" alt="Unused Outputs Optimization Badge"/>
+</p>
+
+---
+
+## 🔹 4) Sequential Optimizations for Unused Outputs
+
+### 📘 Overview
+In many designs, some **flip-flop outputs** or sequential nodes may not be connected to any downstream logic.  
+These **unused outputs** unnecessarily consume area and power if not optimized away.
+
+---
+
+### 🟢 Why Optimize Unused Outputs?
+- Saves **chip area** by removing redundant FFs.  
+- Reduces **power consumption** (unused nodes still toggle and waste dynamic power).  
+- Simplifies **netlist readability**.  
+
+---
+
+### 🔧 Example Case
+### ⚡ E. dff_const5– Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code
+```verilog
+
+module dff_const5(input clk, input reset, output reg q);
+reg q1;
+
+always @(posedge clk, posedge reset)
+begin
+	if(reset)
+	begin
+		q <= 1'b0;
+		q1 <= 1'b0;
+	end
+	else
+	begin
+		q1 <= 1'b1;
+		q <= q1;
+	end
+end
+
+endmodule
+
+```
+---
+
+
