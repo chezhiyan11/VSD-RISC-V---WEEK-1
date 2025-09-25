@@ -160,7 +160,7 @@ Sequential optimizations aim at **register-level improvements** for better perfo
 
 ---
 
-## 🔹 2) Combinational Logic Optimizations
+## 🔹 3. Combinational Logic Optimizations
 
 Combinational logic optimizations focus on **reducing redundant gates, propagating constants, and simplifying Boolean expressions** in the RTL.  
 Below are hands-on experiments (`opt_check1` → `opt_check4` and `multiple_module_opt`) demonstrating Yosys optimizations.
@@ -326,7 +326,7 @@ endmodule
 </p>
 
 ---
-## 🔹 3) Sequential Logic Optimizations
+## 🔹 4. Sequential Logic Optimizations
 
 ### 📘 Overview
 Sequential logic optimizations focus on improving the efficiency of **sequential circuits** (like flip-flops, registers, and state machines).  
@@ -613,7 +613,7 @@ endmodule
 
 ---
 
-## 🔹 4) Sequential Optimizations for Unused Outputs
+## 🔹 5. Sequential Optimizations for Unused Outputs
 
 ### 📘 Overview
 In many designs, some **flip-flop outputs** or sequential nodes may not be connected to any downstream logic.  
@@ -689,3 +689,53 @@ endmodule
   </p>
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/Day3-Summary-darkblue?style=for-the-badge" alt="Day 3 Summary Badge"/>
+</p>
+
+---
+
+## ✅ 6. Summary
+
+Day 3 focused on **Combinational and Sequential Optimizations** in digital design using open-source tools.  
+The key learnings include:
+
+- **Introduction to Optimizations**  
+  - Logic optimization targets **area, power, and delay reduction** while preserving functionality.  
+  - Covered both **combinational** and **sequential** domains.  
+
+- **Combinational Logic Optimizations**  
+  - Techniques like **constant propagation** and **Boolean algebra simplification** were applied.  
+  - Demonstrated through experiments (`opt_check1` → `opt_check4`, `multiple_module_opt`).  
+  - Showcased hierarchical vs flattened module synthesis and hardware savings.  
+
+- **Sequential Logic Optimizations**  
+  - **Basic optimizations** like sequential constant propagation simplify DFF outputs when fed with constants.  
+  - **Advanced techniques** (not fully lab covered):  
+    - **State optimization** for FSMs.  
+    - **Retiming** for balancing critical paths.  
+    - **Cloning** to handle high fan-out nets and routing challenges.  
+
+- **Unused Outputs Optimization**  
+  - Unconnected FF outputs are pruned by synthesis tools.  
+  - Demonstrated with counter examples (`counter_opt`, `counter_opt2`) where unnecessary flip-flops were removed.  
+
+- **Toolchain Usage**  
+  - **Icarus Verilog** for RTL simulation.  
+  - **GTKWave** for waveform visualization.  
+  - **Yosys** for synthesis, logic optimization, and netlist generation.  
+  - **Sky130 PDK** for real standard-cell library mapping.  
+
+🎯 **Takeaway:**  
+Optimization is a crucial step in RTL-to-GDSII flow, ensuring designs are **functionally correct, area-efficient, power-aware, and timing-friendly** before physical implementation.  
+
+---
+
+## 📚 References
+
+1. Clifford Wolf, *Yosys Open SYnthesis Suite Documentation* – [https://yosyshq.net/yosys](https://yosyshq.net/yosys)  
+2. SkyWater Technology Foundry, *Sky130 PDK* – [https://github.com/google/skywater-pdk](https://github.com/google/skywater-pdk)  
+3. NPTEL Course, *VLSI Physical Design – Digital VLSI Design Flow* by Dr. Sudip Misra  
+4. Logic Optimization in VLSI Design, *K-Map and Quine-McCluskey Simplifications*, IEEE Digital Design Tutorials  
+5. Open-Source Silicon, *OpenLane + Yosys + Sky130 Flow* – [https://github.com/The-OpenROAD-Project](https://github.com/The-OpenROAD-Project)  
+
