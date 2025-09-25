@@ -235,4 +235,29 @@ We now analyze the impact of **blocking statements** in sequential logic.
 ✅ **Fix:** Use **non-blocking assignments (`<=`)** inside `always @(posedge clk)` for sequential logic to avoid mismatch.  
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/Day4%20|%20Summary-darkgreen?style=for-the-badge" />
+</p>
+---
+
+## ✅ Summary  
+
+- Learned **GLS (Gate Level Simulation)** flow using **Icarus Verilog** to validate synthesized netlists.  
+- Understood common **Synthesis-Simulation mismatches** caused by missing sensitivity lists, improper coding, and blocking misuse.  
+- Explored the difference between **Blocking (`=`)** and **Non-Blocking (`<=`)** statements and their correct usage.  
+- Identified **caveats of blocking statements** inside sequential logic leading to mismatches.  
+- Performed **labs** to compare RTL vs GLS waveforms for good/bad coding styles and observed the mismatches.  
+- Key takeaway: **Use `=` for combinational, `<=` for sequential** to avoid pitfalls in real hardware. ⚡  
+
+---
+
+## 📚 References  
+
+1. Sudip Misra, *Industry 4.0 and IIoT* (NPTEL course concepts).  
+2. [Icarus Verilog Documentation](http://iverilog.icarus.com/) – RTL & GLS simulation.  
+3. [GTKWave Tool](http://gtkwave.sourceforge.net/) – Waveform visualization.  
+4. [Yosys Open Synthesis Suite](https://yosyshq.net/yosys/) – Open-source synthesis framework.  
+5. [SkyWater Sky130 PDK](https://skywater-pdk.readthedocs.io/) – Open-source standard cell libraries.  
+
+---
 
