@@ -655,7 +655,37 @@ endmodule
 #### Design Visualization
 
   <p align="center">
-    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/dff_const5_netlist.png?raw=true" alt="Description of Image" width="600"/>
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/counter_opt_netlist.png?raw=true" alt="Description of Image" width="600"/>
+  </p>
+
+---
+
+### ⚡ B. const_opt2 – Constant Propagation
+In this example, logic with constant inputs is simplified by the synthesis tool.
+
+#### Example Verilog Code [Modified code]
+```verilog
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+
+---
+
+#### Design Visualization
+
+  <p align="center">
+    <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day3/Images/counter_opt2_netlisyt.png?raw=true" alt="Description of Image" width="600"/>
   </p>
 
 ---
