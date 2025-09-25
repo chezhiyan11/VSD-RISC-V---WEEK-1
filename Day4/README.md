@@ -101,3 +101,112 @@ q  = q0;   // Uses updated value immediately
 // Non-Blocking
 q0 <= d;
 q  <= q0;  // Updates together on clk edge
+```
+
+---
+
+---
+
+## ⚡ 5) Caveats with Blocking Statements  
+
+Blocking assignments (`=`) in Verilog are executed **immediately in sequential order** within a procedural block. While they are useful for combinational logic, their misuse inside sequential logic (`always @(posedge clk)`) can lead to **simulation vs synthesis mismatches**.  
+
+### ⚠️ Why is it a Caveat?  
+
+- In **RTL Simulation**, statements are executed line by line.  
+- In **hardware (synthesis)**, logic executes in **parallel**, not in order.  
+- This difference can cause **incorrect behavior** when blocking assignments are used improperly.  
+
+---
+
+### 🔹 Example: Problematic Blocking Code  
+
+```verilog
+module blocking_caveat (input a, input b, input c, output reg d);
+  reg x;
+  always @(*) begin
+    d = x & c;   // uses "old" value of x
+    x = a | b;   // updates x afterwards
+  end
+endmodule
+```
+---
+
+---
+
+## 6) 🧪 Labs on GLS & Synth-Sim Mismatch
+
+We perform **RTL Simulation**, **Netlist Visualization**, and **GLS Simulation** for two digital designs:  
+
+### A) Ternary Operator MUX  
+
+- **RTL Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gtkwave_ternary_op_mux.png?raw=true" alt="RTL Simulation - Ternary MUX" width="600"/>
+</p>  
+
+- **Netlist Visualization**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/ternary_op_mux_netlist.png?raw=true" alt="Netlist - Ternary MUX" width="600"/>
+</p>  
+
+- **GLS Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gls_ternary_op.png?raw=true" alt="GLS Simulation - Ternary MUX" width="600"/>
+</p>  
+
+---
+
+### B) Bad MUX (with sensitivity list issue)  
+
+- **RTL Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gtkwave_bad_mux.png?raw=true" alt="RTL Simulation - Bad MUX" width="600"/>
+</p>  
+
+- **Netlist Visualization**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/bad_mux_netlist.png?raw=true" alt="Netlist - Bad MUX" width="600"/>
+</p>  
+
+- **GLS Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gls_bad_mux.png?raw=true" alt="GLS Simulation - Bad MUX" width="600"/>
+</p>  
+
+⚠️ **Observation:**  
+- The `bad_mux` design shows a **mismatch** between **RTL simulation** and **GLS simulation**.  
+- Cause: **Missing sensitivity list** + incorrect **blocking assignment (`<=`) in combinational logic**.  
+- Correction: Use `always @(*)` with **blocking assignments (`=`)** for combinational logic.  
+
+---
+
+## 🧪 Labs on Blocking Statement Mismatch 
+
+We now analyze the impact of **blocking statements** in sequential logic.  
+
+### A) Blocking Caveat Design  
+
+- **RTL Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gtkwave_blocking_caveat.png?raw=true" alt="RTL Simulation - Blocking Caveat" width="600"/>
+</p>  
+
+- **Netlist Visualization**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/netlist_blocking_caveat.png?raw=true" alt="Netlist - Blocking Caveat" width="600"/>
+</p>  
+
+- **GLS Simulation**  
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/gls_blocking_caveat.png?raw=true" alt="GLS Simulation - Blocking Caveat" width="600"/>
+</p>  
+
+⚠️ **Observation:**  
+- There is a **clear mismatch** between the **RTL simulation** and **GLS simulation**.  
+- Reason: Improper use of **blocking assignments (`=`)** inside sequential logic leads to order-dependent behavior in simulation, but synthesis interprets the hardware as parallel.  
+
+✅ **Fix:** Use **non-blocking assignments (`<=`)** inside `always @(posedge clk)` for sequential logic to avoid mismatch.  
+
+---
+
