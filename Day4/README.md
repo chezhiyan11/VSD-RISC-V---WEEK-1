@@ -47,24 +47,20 @@
 
 ## 🔗 2) GLS Concepts & Flow
 
-**What is GLS?**  
-👉 *Gate Level Simulation* is the process of simulating the **netlist** (post-synthesis design) using the **same testbench** as RTL.  
-It ensures that the synthesized hardware behaves as intended.
+**GLS** is the process of simulating the **gate-level netlist** after synthesis.  
 
-**Why GLS?**  
-- ✅ Verify **logical correctness** after synthesis.  
-- ✅ Validate **timing behavior** (with delay annotation – out of scope here).  
+🔹 **Why GLS?**  
+- Ensures RTL functionality is preserved post-synthesis.  
+- Validates **timing** (with delays/SDF).  
+- Confirms **DFT/test logic** like scan chains.  
 
-**GLS Flow using Icarus Verilog:**
+🔹 **When to run GLS?**  
+- After synthesis (RTL → netlist).  
+- Before physical design (catch bugs early).  
 
-| Step | Action | Tool |
-|------|--------|------|
-| 1️⃣ | RTL + Testbench simulation | `iverilog`, `vvp` |
-| 2️⃣ | Synthesize RTL → Netlist | Yosys |
-| 3️⃣ | Run GLS with Netlist + Testbench | `iverilog`, `vvp` |
-| 4️⃣ | View waveforms | GTKWave |
-
-📂 **Output**: A `.vcd` file containing GLS results.
+🔹 **Types:**  
+- *Functional GLS* → unit/zero-delay simulation.  
+- *Timing GLS* → with SDF timing back-annotation.  
 
 ---
 
