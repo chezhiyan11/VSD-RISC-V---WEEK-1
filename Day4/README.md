@@ -29,6 +29,11 @@
 8. ✅ Summary  
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/Flow-RTL→Synthesis→GLS→Waveforms-purple" />
+</p>
+
+---
 
 ## 🛠️ 1) Tools Used
 
@@ -39,8 +44,11 @@
 | **Yosys** | Open-source synthesis tool | Generates gate-level netlists, runs optimizations |
 | **Sky130 PDK** | Standard cell library | Provides functional and timing-aware netlists |
 
+
+
+---
 <p align="center">
-  <img src="https://img.shields.io/badge/Flow-RTL→Synthesis→GLS→Waveforms-purple" />
+  <img src="https://img.shields.io/badge/🔗%20GLS%20Concepts%20&%20Flow-icarus--verilog-blue?style=for-the-badge" />
 </p>
 
 ---
@@ -69,6 +77,10 @@
 
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/⚠️%20Synthesis--Simulation%20Mismatch-critical?style=for-the-badge" />
+</p>
+---
 
 ## ⚠️ 3) Synthesis-Simulation Mismatch
 
@@ -83,6 +95,10 @@ Occurs when RTL simulation ≠ Netlist simulation.
 
 👉 Example: Missing sensitivity list in a **MUX** may work in RTL but fail in GLS.
 
+---
+<p align="center">
+  <img src="https://img.shields.io/badge/🔀%20Blocking%20vs%20Non--Blocking%20Statements-orange?style=for-the-badge" />
+</p>
 ---
 
 ## 🔀 4) Blocking vs Non-Blocking Statements
@@ -104,6 +120,9 @@ q  <= q0;  // Updates together on clk edge
 ```
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/⚡%20Caveats%20with%20Blocking%20Statements-yellow?style=for-the-badge" />
+</p>
 
 ---
 
@@ -131,6 +150,9 @@ module blocking_caveat (input a, input b, input c, output reg d);
 endmodule
 ```
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Blocking%20Statement%20Mismatch-lightgrey?style=for-the-badge" />
+</p>
 
 ---
 
@@ -180,8 +202,12 @@ We perform **RTL Simulation**, **Netlist Visualization**, and **GLS Simulation**
 - Correction: Use `always @(*)` with **blocking assignments (`=`)** for combinational logic.  
 
 ---
+<p align="center">
+  <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Blocking%20Statement%20Mismatch-lightgrey?style=for-the-badge" />
+</p>
+---
 
-## 🧪 Labs on Blocking Statement Mismatch 
+## 7) 🧪 Labs on Blocking Statement Mismatch 
 
 We now analyze the impact of **blocking statements** in sequential logic.  
 
