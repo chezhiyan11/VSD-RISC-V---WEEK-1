@@ -60,7 +60,13 @@
 
 🔹 **Types:**  
 - *Functional GLS* → unit/zero-delay simulation.  
-- *Timing GLS* → with SDF timing back-annotation.  
+- *Timing GLS* → with SDF timing back-annotation.
+
+  <p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day4/Images/GLS_Iverilog_block.png?raw=true" alt="description" width="800"/>
+</p>
+
+
 
 ---
 
