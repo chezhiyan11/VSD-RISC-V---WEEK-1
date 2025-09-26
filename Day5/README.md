@@ -213,7 +213,30 @@ endcase
 </p>  
 ---
 
+### ⚠️ Caveat 3: Overlapping Cases  
 
+#### 🔹 Comparison with `if-else if`
+- An **`if-else if-else`** structure operates as **priority logic**.  
+- If conditions overlap, only the first true condition (highest priority) will execute → predictable outcome.  
+
+#### 🔹 Behavior of `case`
+- A `case` statement is generally synthesized as a **multiplexer**, where the selector value directly chooses one input.  
+- Unlike `if-else`, a `case` statement does **not** have built-in priority between overlapping items.  
+
+#### 🔹 Example of Overlap
+If a selector value appears **more than once**, ambiguity arises:  
+
+```verilog
+always @(*) begin
+    case (sel)
+        2'b00: y = a;
+        2'b01: y = b;
+        2'b10: y = c;
+        2'b10: y = d;  // ❌ Overlap: ambiguous
+        default: y = 0;
+    endcase
+end
+```
 
 ---
 
