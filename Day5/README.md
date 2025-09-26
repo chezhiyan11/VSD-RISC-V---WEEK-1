@@ -33,7 +33,7 @@
   <img src="https://img.shields.io/badge/Flow-RTL→Synthesis→Optimization-purple" />
 </p>
 
----
+
 
 ## 🛠️ 1) Tools Used
 
@@ -44,7 +44,7 @@
 | **Yosys** | Open-source synthesis tool | Performs logic optimization, removes redundancies |
 | **Sky130 PDK** | Standard cell library | Provides cells for synthesis |
 
----
+
 
 ---
 <p align="center">
@@ -496,11 +496,6 @@ show
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/partial_case_assign_netlist.png?raw=true" alt="partial_case_assign" width="700"/>
 </p> 
-
----
-<p align="center">
-  <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Overlapping%20Case-red?style=for-the-badge" />
-</p>
 
 ---
 
