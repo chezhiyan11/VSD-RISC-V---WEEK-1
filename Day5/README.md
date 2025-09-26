@@ -273,8 +273,8 @@ gtkwave tb_incom_if.vcd
 **Yosys [Simulator]**
 ```inside yosys
 read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-read_verilog incom_if.v
-synth -top incom_if
+read_verilog incomp_if.v
+synth -top incomp_if
 abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
@@ -310,7 +310,7 @@ endmodule
 # compile RTL + testbench into an executable
 iverilog incomp_if2.v tb_incomp_if2.v
 ./a.out
-gtkwave tb_incom_if2.vcd
+gtkwave tb_incomp_if2.vcd
 ```
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_incomp_if2.png?raw=true" alt="gtk_incomp_if" width="700"/>
@@ -320,8 +320,8 @@ gtkwave tb_incom_if2.vcd
 **Yosys [Simulator]**
 ```inside yosys
 read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-read_verilog incom_i2f.v
-synth -top incom_if2
+read_verilog incomp_if2.v
+synth -top incomp_if2
 abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
@@ -336,7 +336,171 @@ show
 
 ## 4) 🧪 Labs on Incomplete Overlapping Case  
 
-✍️ *[Add RTL simulation, GLS, netlist visualization + notes here]*  
+#### A — incomp_case [Incomplete Case]
+
+#### Design Code:
+```bash
+module incomp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+	endcase
+end
+endmodule
+```
+
+**RTL simulation with Icarus Verilog**
+```bash
+# compile RTL + testbench into an executable
+iverilog incomp_case.v tb_incomp_case.v
+./a.out
+gtkwave tb_incom_case.vcd
+```
+<p align="center">
+  <img src="  " alt="gtk_incomp_case" width="700"/>
+</p>  
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog incomp_case.v
+synth -top incomp_case
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src=" " alt="incomp_case_netlist" width="700"/>
+</p>  
+
+---
+#### B — comp_case [Complete Case]
+
+#### Design Code:
+```bash
+module comp_case (input i0 , input i1 , input i2 , input [1:0] sel, output reg y);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : y = i0;
+		2'b01 : y = i1;
+		default : y = i2;
+	endcase
+end
+endmodule
+```
+
+**RTL simulation with Icarus Verilog**
+```bash
+# compile RTL + testbench into an executable
+iverilog comp_case.v tb_comp_case.v
+./a.out
+gtkwave tb_comp_case.vcd
+```
+<p align="center">
+  <img src="  " alt="gtk_comp_case" width="700"/>
+</p>  
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog comp_case.v
+synth -top comp_case
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src=" " alt="comp_case_netlist" width="700"/>
+</p> 
+---
+
+#### C — bad_case [Bad Case]
+
+#### Design Code:
+```bash
+module bad_case (input i0 , input i1, input i2, input i3 , input [1:0] sel, output reg y);
+always @(*)
+begin
+	case(sel)
+		2'b00: y = i0;
+		2'b01: y = i1;
+		2'b10: y = i2;
+		2'b1?: y = i3;
+		//2'b11: y = i3;
+	endcase
+end
+
+endmodule
+```
+
+**RTL simulation with Icarus Verilog**
+```bash
+# compile RTL + testbench into an executable
+iverilog bad_case.v tb_bad_case.v
+./a.out
+gtkwave tb_bad_case.vcd
+```
+<p align="center">
+  <img src="  " alt="gtk_bad_case" width="700"/>
+</p>  
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog bad_case.v
+synth -top bad_case
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src=" " alt="bad_case_netlist" width="700"/>
+</p> 
+
+---
+
+#### D — partial_case_assign [Partial Case Assignmentgedit ]
+
+#### Design Code:
+```bash
+module partial_case_assign (input i0 , input i1 , input i2 , input [1:0] sel, output reg y , output reg x);
+always @ (*)
+begin
+	case(sel)
+		2'b00 : begin
+			y = i0;
+			x = i2;
+			end
+		2'b01 : y = i1;
+		default : begin
+		           x = i1;
+			   y = i2;
+			  end
+	endcase
+end
+endmodule
+```
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog partial_case_assign.v
+synth -top partial_case_assign
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src=" " alt="partial_case_assign" width="700"/>
+</p> 
+
+---
+<p align="center">
+  <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Overlapping%20Case-red?style=for-the-badge" />
+</p>
 
 ---
 
