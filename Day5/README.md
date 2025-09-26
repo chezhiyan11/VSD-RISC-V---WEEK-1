@@ -119,8 +119,8 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/Valid_infered_latch.png?raw=true" alt="Valid_Infered_latch" width="700"/>
 </p>  
----
 
+---
 ### 🔹 B) The `case` Statement in Hardware Design  
 
 #### 1. Basic Implementation  
@@ -154,9 +154,7 @@ endmodule
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/mux_case.png?raw=true" alt="Mux_Case" width="700"/>
 </p>  
 
-
 ---
-
 #### 2. Caveats and Solutions  
 
 **⚠️ Incomplete Case**  
@@ -171,11 +169,10 @@ case (sel)
 endcase
 ```
 
----
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/latched_mux.png?raw=true" alt="latched_mux" width="700"/>
 </p>  
----
+
 
 **To avoid infered latch**
 
@@ -208,12 +205,11 @@ case (sel)
   end
 endcase
 ```
----
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/partial_ass.png?raw=true" alt="missing_assignment" width="700"/>
 </p>  
----
 
+---
 ### ⚠️ Caveat 3: Overlapping Cases  
 
 #### 🔹 Comparison with `if-else if`
@@ -238,12 +234,11 @@ always @(*) begin
     endcase
 end
 ```
-
 ---
-
 <p align="center">
   <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Incomplete%20If--Case-orange?style=for-the-badge" />
 </p>
+
 
 ## 3) 🧪 Labs on Incomplete If-Case  
 
