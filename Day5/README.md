@@ -46,16 +46,45 @@
 
 ---
 
+---
 <p align="center">
   <img src="https://img.shields.io/badge/🔀%20If--Case%20Constructs-blue?style=for-the-badge" />
 </p>
 
 ## 2) 🔀 If-Case Constructs  
 
-✍️ *[Add your lecture notes here as you watch the video]*  
-- Explain how synthesis interprets **if-else vs case statements**.  
-- Note differences between **complete** and **incomplete conditions**.  
-- Highlight optimization behavior by synthesis tools.  
+The `if` and `case` statements are two important constructs in Verilog for **decision-making logic**. They map directly to hardware during synthesis, but incorrect usage may cause **inferred latches** and unintended behavior.
+
+---
+
+### 🔹 A) The `if` Statement in Hardware Design  
+
+#### 1. Implementation as Priority Logic  
+- An `if-else if-else` chain synthesizes into **priority logic**.  
+- In hardware, this becomes a **chain of multiplexers**.  
+- The first condition that evaluates `true` determines the output.  
+
+**Execution Flow:**  
+- `<cond1>` has the **highest priority**.  
+- If `<cond1>` is false, `<cond2>` is checked, and so on.  
+
+#### 2. Dangers and Cautions – Inferred Latches  
+- An **incomplete if** (missing a final `else`) can create **inferred latches** in **combinational logic**.  
+- **Cause:** The synthesis tool inserts a latch to hold the previous value when no condition matches.  
+- **Bad Practice:** Using incomplete `if` statements in combinational logic.  
+
+#### 3. Incomplete `if` in Sequential Logic (Valid Usage)  
+- In **sequential logic**, incomplete `if` statements are often intentional.  
+- Example: A counter uses:  
+  ```verilog
+  always @(posedge clk or posedge rst) begin
+    if (rst)
+      count <= 0;
+    else if (en)
+      count <= count + 1;
+    // No final else: holds previous value
+  end
+
 
 ---
 
