@@ -359,7 +359,7 @@ iverilog incomp_case.v tb_incomp_case.v
 gtkwave tb_incom_case.vcd
 ```
 <p align="center">
-  <img src="  " alt="gtk_incomp_case" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_incomp_case.png?raw=true" alt="gtk_incomp_case" width="700"/>
 </p>  
 
 
@@ -372,7 +372,7 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src=" " alt="incomp_case_netlist" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/incomp_case_netlist.png?raw=true" alt="incomp_case_netlist" width="700"/>
 </p>  
 
 ---
@@ -400,7 +400,7 @@ iverilog comp_case.v tb_comp_case.v
 gtkwave tb_comp_case.vcd
 ```
 <p align="center">
-  <img src="  " alt="gtk_comp_case" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_comp_case.png?raw=true" alt="gtk_comp_case" width="700"/>
 </p>  
 
 
@@ -413,7 +413,7 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src=" " alt="comp_case_netlist" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/comp_case_netlist.png?raw=true" alt="comp_case_netlist" width="700"/>
 </p> 
 ---
 
@@ -444,7 +444,7 @@ iverilog bad_case.v tb_bad_case.v
 gtkwave tb_bad_case.vcd
 ```
 <p align="center">
-  <img src="  " alt="gtk_bad_case" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_bad_case.png?raw=true" alt="gtk_bad_case" width="700"/>
 </p>  
 
 
@@ -457,7 +457,7 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src=" " alt="bad_case_netlist" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/bad_case_netlist.png?raw=true" alt="bad_case_netlist" width="700"/>
 </p> 
 
 ---
@@ -494,7 +494,7 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src=" " alt="partial_case_assign" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/partial_case_assign_netlist.png?raw=true" alt="partial_case_assign" width="700"/>
 </p> 
 
 ---
