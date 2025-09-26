@@ -76,27 +76,27 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
      end
     ```
 
----
+
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/if_else_hardware.png?raw=true" alt="If_else_hardware" width="700"/>
 </p>  
----
+
   
 
 **Execution Flow:**  
 - `<cond1>` has the **highest priority**.  
-- If `<cond1>` is false, `<cond2>` is checked, and so on.  
+- If `<cond1>` is false, `<cond2>` is checked, and so on.
+---
 
 #### 2. Dangers and Cautions – Inferred Latches  
 - An **incomplete if** (missing a final `else`) can create **inferred latches** in **combinational logic**.  
 - **Cause:** The synthesis tool inserts a latch to hold the previous value when no condition matches.  
 - **Bad Practice:** Using incomplete `if` statements in combinational logic.
----
+
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/danger_with_if.png?raw=true" alt="Danger with if" width="700"/>
 </p>  
 
----
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/Infered_latch.png?raw=true" alt="Infered_latch" width="700"/>
 </p>  
@@ -116,7 +116,6 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
   end
   ```
 
----
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/Valid_infered_latch.png?raw=true" alt="Valid_Infered_latch" width="700"/>
 </p>  
@@ -150,11 +149,11 @@ end
 
 endmodule
 ```
----
+
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/mux_case.png?raw=true" alt="Mux_Case" width="700"/>
 </p>  
----
+
 
 ---
 
