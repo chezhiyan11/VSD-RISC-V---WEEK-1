@@ -246,7 +246,95 @@ end
 
 ## 3) 🧪 Labs on Incomplete If-Case  
 
-✍️ *[Add lab steps, simulation screenshots, and mismatch observations here]*  
+### ⛏️ Commands — simulate (Icarus), view (GTKWave) and synthesize (Yosys)
+
+### A — incom_if (Incomplete if → inferred latch)
+
+#### Design Code:
+```bash
+module incomp_if (input i0 , input i1 , input i2 , output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+end
+endmodule
+```
+---
+**RTL simulation with Icarus Verilog**
+```bash
+# compile RTL + testbench into an executable
+iverilog incomp_if.v tb_incomp_if.v
+./a.out
+gtkwave tb_incom_if.vcd
+```
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="gtk_incomp_if" width="700"/>
+</p>  
+---
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog incom_if.v
+synth -top incom_if
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="Dlatch in Mux" width="700"/>
+</p>  
+
+- Here it is clearly visible that Dlatch is infered in the Mux.
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="incomp_if_netlist" width="700"/>
+</p>  
+---
+
+#### B — incom_if2 (Incomplete if2 → inferred latch)
+
+#### Design Code:
+```bash
+module incomp_if2 (input i0 , input i1 , input i2 , input i3, output reg y);
+always @ (*)
+begin
+	if(i0)
+		y <= i1;
+	else if (i2)
+		y <= i3;
+
+end
+endmodule
+```
+---
+**RTL simulation with Icarus Verilog**
+```bash
+# compile RTL + testbench into an executable
+iverilog incomp_if2.v tb_incomp_if2.v
+./a.out
+gtkwave tb_incom_if2.vcd
+```
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="gtk_incomp_if" width="700"/>
+</p>  
+---
+
+
+**Yosys [Simulator]**
+```inside yosys
+read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog incom_i2f.v
+synth -top incom_if2
+abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+show 
+```
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="incomp_if_netlist" width="700"/>
+</p>  
+---
+
 
 ---
 
