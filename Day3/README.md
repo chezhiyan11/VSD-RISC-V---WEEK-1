@@ -222,7 +222,7 @@ In this example, logic with constant inputs is simplified by the synthesis tool.
 
 #### Example Verilog Code
 ```verilog
-module opt_check1 (input a, input b, output y);
+module opt_check2 (input a, input b, output y);
   assign y = a&1:b; 
 endmodule
 
@@ -242,7 +242,7 @@ In this example, logic with constant inputs is simplified by the synthesis tool.
 
 #### Example Verilog Code
 ```verilog
-module opt_check1 (input a, input b, input c, output y);
+module opt_check3 (input a, input b, input c, output y);
   assign y = a?(c?b:0):0;
 endmodule
 
@@ -261,7 +261,7 @@ In this example, logic with constant inputs is simplified by the synthesis tool.
 
 #### Example Verilog Code
 ```verilog
-module opt_check1 (input a, input b, input c, output y);
+module opt_check4 (input a, input b, input c, output y);
   assign y = a?(b?(a&c):c):(!c);
 endmodule
 
