@@ -256,7 +256,7 @@ begin
 end
 endmodule
 ```
----
+
 **RTL simulation with Icarus Verilog**
 ```bash
 # compile RTL + testbench into an executable
@@ -265,9 +265,9 @@ iverilog incomp_if.v tb_incomp_if.v
 gtkwave tb_incom_if.vcd
 ```
 <p align="center">
-  <img src="images/day4/blocking_caveat_rtl.png" alt="gtk_incomp_if" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_ncomp_if.png?raw=true" alt="gtk_incomp_if" width="700"/>
 </p>  
----
+
 
 
 **Yosys [Simulator]**
@@ -279,16 +279,16 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src="images/day4/blocking_caveat_rtl.png" alt="Dlatch in Mux" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/dlatch_infered%20in%20mux.png?raw=true" alt="Dlatch in Mux" width="700"/>
 </p>  
 
 - Here it is clearly visible that Dlatch is infered in the Mux.
----
-<p align="center">
-  <img src="images/day4/blocking_caveat_rtl.png" alt="incomp_if_netlist" width="700"/>
-</p>  
----
 
+<p align="center">
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/incomp_if_netlist.png?raw=true" alt="incomp_if_netlist" width="700"/>
+</p>  
+
+---
 #### B — incom_if2 (Incomplete if2 → inferred latch)
 
 #### Design Code:
@@ -304,7 +304,7 @@ begin
 end
 endmodule
 ```
----
+
 **RTL simulation with Icarus Verilog**
 ```bash
 # compile RTL + testbench into an executable
@@ -313,9 +313,8 @@ iverilog incomp_if2.v tb_incomp_if2.v
 gtkwave tb_incom_if2.vcd
 ```
 <p align="center">
-  <img src="images/day4/blocking_caveat_rtl.png" alt="gtk_incomp_if" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_incomp_if2.png?raw=true" alt="gtk_incomp_if" width="700"/>
 </p>  
----
 
 
 **Yosys [Simulator]**
@@ -327,13 +326,10 @@ abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 show 
 ```
 <p align="center">
-  <img src="images/day4/blocking_caveat_rtl.png" alt="incomp_if_netlist" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/incomp_if2_netlist.png?raw=true" alt="incomp_if_netlist" width="700"/>
 </p>  
----
-
 
 ---
-
 <p align="center">
   <img src="https://img.shields.io/badge/🧪%20Labs%20on%20Overlapping%20Case-red?style=for-the-badge" />
 </p>
