@@ -62,7 +62,26 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
 #### 1. Implementation as Priority Logic  
 - An `if-else if-else` chain synthesizes into **priority logic**.  
 - In hardware, this becomes a **chain of multiplexers**.  
-- The first condition that evaluates `true` determines the output.  
+- The first condition that evaluates `true` determines the output.
+    ```verilog
+    begin
+      if <cond_1>
+         // C1
+      else if <cond_2>
+         // C2
+      else if <cond_3>
+         // C3
+      else
+         // E
+     end
+    ```
+
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="If_else_hardware" width="700"/>
+</p>  
+---
+  
 
 **Execution Flow:**  
 - `<cond1>` has the **highest priority**.  
@@ -71,7 +90,17 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
 #### 2. Dangers and Cautions – Inferred Latches  
 - An **incomplete if** (missing a final `else`) can create **inferred latches** in **combinational logic**.  
 - **Cause:** The synthesis tool inserts a latch to hold the previous value when no condition matches.  
-- **Bad Practice:** Using incomplete `if` statements in combinational logic.  
+- **Bad Practice:** Using incomplete `if` statements in combinational logic.
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="Danger with if" width="700"/>
+</p>  
+---
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="Infered_latch" width="700"/>
+</p>  
+---
 
 #### 3. Incomplete `if` in Sequential Logic (Valid Usage)  
 - In **sequential logic**, incomplete `if` statements are often intentional.  
@@ -84,6 +113,106 @@ The `if` and `case` statements are two important constructs in Verilog for **dec
       count <= count + 1;
     // No final else: holds previous value
   end
+  ```
+
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="Valid_Infered_latch" width="700"/>
+</p>  
+---
+
+### 🔹 B) The `case` Statement in Hardware Design  
+
+#### 1. Basic Implementation  
+- A `case` statement selects between multiple options based on a **selector signal (`sel`)**.  
+- Synthesizes into a **multiplexer**, driven by `sel`.  
+- Typically easier to read/write compared to long `if-else` chains.
+
+##### Example MUX in Case statement
+```verilog
+// 4x1 Multiplexer using case statement
+module mux4x1_case (
+    input  [1:0] sel,      // 2-bit select line
+    input  C1, C2, C3, C4,     // 4 data inputs
+    output reg y           // output
+);
+
+always @(*) begin
+    case (sel)
+        2'b00: y = C1;
+        2'b01: y = C2;
+        2'b10: y = C3;
+        2'b11: y = C4;
+        default: y = 0;   // safe default to avoid latch inference
+    endcase
+end
+
+endmodule
+```
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="Mux_Case" width="700"/>
+</p>  
+---
+
+---
+
+#### 2. Caveats and Solutions  
+
+**⚠️ Incomplete Case**  
+- If all possible values of `sel` are **not covered**, synthesis infers **latches**.  
+- ✅ **Fix:** Always include a `default` case.
+
+**Example Incomplete Case**
+```verilog
+case (sel)
+  2'b00: y = C1;
+  2'b01: y = C2;
+endcase
+```
+
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="latched_mux" width="700"/>
+</p>  
+---
+**To avoid infered latch**
+
+```verilog
+case (sel)
+  2'b00: y = C1;
+  2'b01: y = C2;
+  2'b10: y = C3;
+  default: y = 0;  // prevents latch
+endcase
+```
+---
+**⚠️ Partial Assignments**
+  - If not all outputs are assigned in each branch, latches may be inferred.
+  - ✅ **Fix**: Assign all outputs in all case branches.
+
+**Example Partial Assignment**
+```verilog
+case (sel)
+  2'b00: begin
+    x = a;
+    y = b;
+  end
+  2'b01: begin
+    x = c;
+  end
+  default: begin
+    x = 0;
+    y = 0;
+  end
+endcase
+```
+---
+<p align="center">
+  <img src="images/day4/blocking_caveat_rtl.png" alt="missing_assignment" width="700"/>
+</p>  
+---
+
 
 
 ---
