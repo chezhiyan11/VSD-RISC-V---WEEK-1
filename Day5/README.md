@@ -505,10 +505,90 @@ show
 
 ## 5) 🔁 For Loop & For Generate  
 
-✍️ *[Add lecture notes here]*  
-- Difference between **behavioral for loop** and **generate-for loop**.  
-- How Yosys expands loops into hardware.  
-- Optimization by removing redundant iterations.  
+In hardware design, **looping constructs** play a key role in describing both **behavior** and **structure**.  
+There are two main types:
+
+---
+
+### 1️⃣ Procedural `for` Loop (Inside `always` Blocks)
+
+👉 Used **inside `always` blocks**.  
+👉 Describes **behavioral logic evaluation** (not hardware instantiation).  
+👉 Great for **MUX/DEMUX logic** or **iterative assignments**.
+
+#### ✅ Example 1: 32×1 Multiplexer (using `for`)
+```verilog
+module mux32x1 (
+    input  wire [31:0] inp,
+    input  wire [4:0]  sel,
+    output reg         Y
+);
+integer i;
+always @(*) begin
+    Y = 0;
+    for (i = 0; i < 32; i = i + 1) begin
+        if (sel == i)
+            Y = inp[i];
+    end
+end
+endmodule
+```
+### 2️⃣ `generate for` Loop (Structural Replication)
+
+👉 Used **outside `always` blocks**.  
+👉 Describes **structural hardware instantiation**.  
+👉 Great for **arrays of gates, adders, or replicated modules**.  
+
+---
+
+#### ✅ Example 1: AND Gate Array
+```verilog
+module and_array #(parameter N=4)(
+    input  wire [N-1:0] A, B,
+    output wire [N-1:0] Y
+);
+genvar i;
+generate
+    for (i = 0; i < N; i = i + 1) begin : AND_LOOP
+        and g (Y[i], A[i], B[i]);
+    end
+endgenerate
+endmodule
+```
+
+#### ✅ Example 2: Ripple Carry Adder (using for generate)
+
+```verilog
+module rca #(parameter N=4)(
+    input  wire [N-1:0] A, B,
+    input  wire Cin,
+    output wire [N-1:0] Sum,
+    output wire Cout
+);
+wire [N:0] c;
+assign c[0] = Cin;
+assign Cout = c[N];
+
+genvar i;
+generate
+    for (i = 0; i < N; i = i + 1) begin : RCA_LOOP
+        full_adder FA (
+            .a(A[i]), .b(B[i]), .cin(c[i]),
+            .sum(Sum[i]), .cout(c[i+1])
+        );
+    end
+endgenerate
+endmodule
+```
+
+### 📊 Summary of Differences
+
+| **Feature**          | **Procedural `for` Loop**              | **`generate for` Loop**                 |
+|-----------------------|-----------------------------------------|-----------------------------------------|
+| **Location**          | Inside an `always` block                | Outside an `always` block                |
+| **Primary Function**  | Evaluating expressions / logic behavior | Instantiating / replicating hardware     |
+| **Concept**           | Describes *behavior*                    | Describes *physical structure*           |
+
 
 ---
 
