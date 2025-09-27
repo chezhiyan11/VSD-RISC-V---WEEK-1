@@ -184,4 +184,32 @@ Below are the main topics organized **Day-wise**, each with expandable sections 
 2. [GTKWave](http://gtkwave.sourceforge.net/) – Waveform visualization.  
 3. [Yosys HQ](https://yosyshq.net/yosys/) – Synthesis & optimization.  
 4. [SkyWater Sky130 PDK](https://skywater-pdk.readthedocs.io/) – Cell libraries.  
-5. Sudip Misra NPTEL Course – *Industry 4.0 and IIoT (Verilog Synthesis Part)*.  
+5. Sudip Misra NPTEL Course – *Industry 4.0 and IIoT (Verilog Synthesis Part)*.
+
+---
+---
+
+## Acknowledgments  
+
+I would like to sincerely acknowledge and thank:  
+
+- **Mr. Kunal Ghosh (Founder, VSD – VLSI System Design)**  
+  For his exceptional mentorship, guidance, and vision in enabling students to learn *RTL design, synthesis, and open-source VLSI flows*.  
+
+- **VSD Team**  
+  For curating the workshop content and providing continuous learning resources.  
+
+
+- **Open-Source EDA Community**  
+  For making powerful tools freely available, including:  
+  - 🖥️ [Icarus Verilog](http://iverilog.icarus.com/)  
+  - 📊 [GTKWave](http://gtkwave.sourceforge.net/)  
+  - ⚙️ [Yosys](https://yosyshq.net/yosys/)  
+
+- **Faculty & Peers from the VLSI Department**  
+  For their constant encouragement, support, and collaboration during this learning journey.  
+
+---
+
+✨ This repository is dedicated to the spirit of **open-source hardware education** and the belief that *accessible knowledge can empower innovation in VLSI design*.  
+
