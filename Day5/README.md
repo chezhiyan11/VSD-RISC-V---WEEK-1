@@ -734,10 +734,32 @@ The Ripple Carry Adder is built by structurally replicating Full Adder (FA) modu
 
 ## ✅ Summary  
 
-- Learned how **if-case constructs** are synthesized and optimized.  
-- Observed **mismatches in incomplete/overlapping case statements**.  
-- Understood difference between **`for` loop** (simulation construct) and **`generate` loop** (synthesis unrolling).  
-- Labs demonstrated how synthesis tools **remove redundancies and optimize logic**.  
+- 🔀 **If-Case Constructs**  
+  - `if-else` → synthesizes into **priority logic** (chain of multiplexers).  
+  - `case` → synthesizes into **multiplexer** controlled by selector.  
+  - ⚠️ Issues: Incomplete `if/case` → inferred latches; Overlapping `case` → ambiguity.  
+  - ✅ Fixes: Always include **default case** and assign all outputs in every branch.  
+
+- 🧪 **Labs on Incomplete If/Case**  
+  - Observed **latch inference** when final `else/default` was missing.  
+  - Verified through **RTL simulation (Icarus + GTKWave)** and **Yosys netlist visualization**.  
+  - Saw **difference between complete, incomplete, and bad cases**.  
+
+- 🔁 **For vs Generate Loops**  
+  - `for` loop inside `always` → **procedural, behavioral**, used for iteration in logic evaluation.  
+  - `generate for` outside `always` → **structural, hardware replication**, used to replicate gates/modules.  
+  - ✅ Example designs: **MUX, DEMUX, AND-array, Ripple Carry Adder (RCA)**.  
+
+- 🧪 **Labs on For & Generate**  
+  - Implemented **MUX using generate**, **DEMUX using case**, **DEMUX using generate**, and **Ripple Carry Adder using generate**.  
+  - Verified outputs using **GTKWave simulation**.  
+  - Observed how generate-based replication simplifies scalable hardware design.  
+
+- ⚡ **Key Learnings**  
+  - Importance of writing **complete conditional logic** to avoid unintended hardware.  
+  - Difference between **behavioral loops (simulation)** and **structural generate loops (synthesis)**.  
+  - Practical verification of **RTL → Synthesis → Netlist optimization flow** using open-source tools.  
+
 
 ---
 
