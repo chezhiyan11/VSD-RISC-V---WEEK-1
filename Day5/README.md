@@ -598,9 +598,135 @@ endmodule
 
 ## 6) 🧪 Labs on For Loop & For Generate  
 
-✍️ *[Add waveform screenshots + observations here]*  
+In this lab, we explore **loop-based Verilog constructs** (`for` loop inside `always` and `for-generate` outside `always`) by simulating different designs and visualizing their outputs in GTKWave.  
 
 ---
+
+## 1️⃣ MUX using `for-generate`  
+
+### A) 📜 Design Code  
+```verilog
+module mux_generate (input i0 , input i1, input i2 , input i3 , input [1:0] sel  , output reg y);
+wire [3:0] i_int;
+assign i_int = {i3,i2,i1,i0};
+integer k;
+always @ (*)
+begin
+for(k = 0; k < 4; k=k+1) begin
+	if(k == sel)
+		y = i_int[k];
+end
+end
+endmodule
+```
+**Explanation:**
+The MUX is designed using the generate for construct which structurally replicates MUX logic. Each input line is connected to the output depending on the select line, demonstrating how generate loops can instantiate multiple hardware blocks systematically.
+
+## B) 📈 Simulation Waveform
+<p align="center">
+  <img src=" " alt="mux_gen" width="700"/>
+</p> 
+
+---
+
+## 2️⃣ DEMUX using case Statement
+
+### A) 📜 Design Code  
+```verilog
+module demux_case (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+	case(sel)
+		3'b000 : y_int[0] = i;
+		3'b001 : y_int[1] = i;
+		3'b010 : y_int[2] = i;
+		3'b011 : y_int[3] = i;
+		3'b100 : y_int[4] = i;
+		3'b101 : y_int[5] = i;
+		3'b110 : y_int[6] = i;
+		3'b111 : y_int[7] = i;
+	endcase
+
+end
+endmodule
+
+```
+**Explanation:**
+This DEMUX is implemented using a case statement inside an always block. The procedural logic assigns the input to one of the output lines based on the select value. This demonstrates behavioral modeling using procedural constructs.
+
+## B) 📈 Simulation Waveform
+<p align="center">
+  <img src=" " alt="demux_case" width="700"/>
+</p> 
+
+---
+## 3️⃣ DEMUX using for-generate
+
+### A) 📜 Design Code  
+```verilog
+
+module demux_generate (output o0 , output o1, output o2 , output o3, output o4, output o5, output o6 , output o7 , input [2:0] sel  , input i);
+reg [7:0]y_int;
+assign {o7,o6,o5,o4,o3,o2,o1,o0} = y_int;
+integer k;
+always @ (*)
+begin
+y_int = 8'b0;
+for(k = 0; k < 8; k++) begin
+	if(k == sel)
+		y_int[k] = i;
+end
+end
+endmodule
+
+
+```
+**Explanation:**
+The DEMUX is implemented using the generate for loop, where each output line is instantiated structurally. This allows replication of hardware logic efficiently compared to case-based modeling.
+
+## B) 📈 Simulation Waveform
+<p align="center">
+  <img src=" " alt="demux_case" width="700"/>
+</p> 
+
+---
+## 4️⃣ Ripple Carry Adder (RCA) using for-generate
+
+### A) 📜 Design Code  
+```verilog
+module rca (input [7:0] num1 , input [7:0] num2 , output [8:0] sum);
+wire [7:0] int_sum;
+wire [7:0]int_co;
+
+genvar i;
+generate
+	for (i = 1 ; i < 8; i=i+1) begin
+		fa u_fa_1 (.a(num1[i]),.b(num2[i]),.c(int_co[i-1]),.co(int_co[i]),.sum(int_sum[i]));
+	end
+
+endgenerate
+fa u_fa_0 (.a(num1[0]),.b(num2[0]),.c(1'b0),.co(int_co[0]),.sum(int_sum[0]));
+
+
+assign sum[7:0] = int_sum;
+assign sum[8] = int_co[7];
+endmodule
+```
+**Explanation:**
+The Ripple Carry Adder is built by structurally replicating Full Adder (FA) modules using a for-generate loop. Each FA block takes a carry-in and produces a carry-out, which is fed into the next stage. This highlights how generate loops help create scalable arithmetic circuits.
+
+## B) 📈 Simulation Waveform
+<p align="center">
+  <img src=" " alt="demux_gen" width="700"/>
+</p> 
+
+---
+
+
 
 <p align="center">
   <img src="https://img.shields.io/badge/Day5%20|%20Summary-darkgreen?style=for-the-badge" />
