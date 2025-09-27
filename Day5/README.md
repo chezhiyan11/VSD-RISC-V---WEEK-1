@@ -624,7 +624,7 @@ The MUX is designed using the generate for construct which structurally replicat
 
 ## B) 📈 Simulation Waveform
 <p align="center">
-  <img src=" " alt="mux_gen" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/gtk_mux_gen.png?raw=true" alt="mux_gen" width="700"/>
 </p> 
 
 ---
@@ -660,7 +660,7 @@ This DEMUX is implemented using a case statement inside an always block. The pro
 
 ## B) 📈 Simulation Waveform
 <p align="center">
-  <img src=" " alt="demux_case" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/netlist_demux_case.png?raw=true" alt="demux_case" width="700"/>
 </p> 
 
 ---
@@ -690,7 +690,7 @@ The DEMUX is implemented using the generate for loop, where each output line is 
 
 ## B) 📈 Simulation Waveform
 <p align="center">
-  <img src=" " alt="demux_case" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/netlist_demux_generate.png?raw=true" alt="demux_case" width="700"/>
 </p> 
 
 ---
@@ -721,7 +721,7 @@ The Ripple Carry Adder is built by structurally replicating Full Adder (FA) modu
 
 ## B) 📈 Simulation Waveform
 <p align="center">
-  <img src=" " alt="demux_gen" width="700"/>
+  <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/netlist_rca.png?raw=true" alt="demux_gen" width="700"/>
 </p> 
 
 ---
