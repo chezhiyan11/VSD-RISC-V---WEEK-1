@@ -415,8 +415,8 @@ show
 <p align="center">
   <img src="https://github.com/chezhiyan11/VSD-RISC-V---WEEK-1/blob/main/Day5/Images/comp_case_netlist.png?raw=true" alt="comp_case_netlist" width="700"/>
 </p> 
----
 
+---
 #### C — bad_case [Bad Case]
 
 #### Design Code:
